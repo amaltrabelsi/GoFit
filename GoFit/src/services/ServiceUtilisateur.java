@@ -31,8 +31,8 @@ Connection cnx;
     public void ajout(Utilisateur t) {
         try {	
 
-            String req = "insert into utilisateur (Nom,Prenom,Email,Date_de_naissance,Sexe,Region,Adresse,Role) values"
-                    + " ('" + t.getNom() + "','" + t.getPrenom() + "','" + t.getEmail() + "','" + t.getDate_de_naissance() + "','" + t.getSexe() + "','" + t.getRegion() + "','" + t.getAdresse() + "' ,'" + t.getRole() + "')";
+            String req = "insert into utilisateur (Nom,Prenom,Email,Date_de_naissance,Sexe,Region,Adresse,Role,Mdp) values"
+                    + " ('" + t.getNom() + "','" + t.getPrenom() + "','" + t.getEmail() + "','" + t.getDate_de_naissance() + "','" + t.getSexe() + "','" + t.getRegion() + "','" + t.getAdresse() + "' ,'" + t.getRole() + "','" + t.getMdp() + "')";
                     Statement st = cnx.createStatement();
                     st.executeUpdate(req);
         } catch (SQLException ex) {
@@ -44,17 +44,18 @@ Connection cnx;
     @Override
     public void modifier(Utilisateur t) {
         try {
-            String req = "update utilisateur set Nom=?,Prenom=?,Email=?,Date_de_naissance=?,Sexe=?,Region=?,Adresse=?,Role=? where Utilisateur_Id = ?";
+            String req = "update utilisateur set Nom=?,Prenom=?,Email=?,Date_de_naissance=?,Sexe=?,Region=?,Adresse=?,Role=?  , Mdp =?where Utilisateur_Id = ?";
             PreparedStatement ps = cnx.prepareStatement(req);
             ps.setString(1, t.getNom());
             ps.setString(2, t.getPrenom());
             ps.setString(3, t.getEmail());
-            ps.setDate(4, t.getDate_de_naissance()); 
+            ps.setString(4, t.getDate_de_naissance()); 
             ps.setString(5, t.getSexe());
             ps.setString(6, t.getRegion());
             ps.setString(7, t.getAdresse());
             ps.setString(8, t.getRole());
-            ps.setInt(9, t.getUtilisateur_Id());
+            ps.setString(9, t.getMdp());
+            ps.setInt(10, t.getUtilisateur_Id());
             ps.executeUpdate();
             
         } catch (SQLException ex) {
@@ -89,11 +90,12 @@ Connection cnx;
                 s.setNom(rs.getString("Nom"));
                 s.setPrenom(rs.getString("Prenom"));
                 s.setEmail(rs.getString("Email"));
-                s.setDate_de_naissance(rs.getDate("Date_de_naissance"));
+                s.setDate_de_naissance(rs.getString("Date_de_naissance"));
                 s.setSexe(rs.getString("Sexe"));
                 s.setRegion(rs.getString("Region"));
                 s.setAdresse(rs.getString("Adresse"));
                 s.setRole(rs.getString("Role"));
+                s.setMdp(rs.getString("Mdp"));
                 list.add(s);
             }
             

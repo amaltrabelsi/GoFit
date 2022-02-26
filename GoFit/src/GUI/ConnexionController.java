@@ -18,6 +18,7 @@ import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -27,6 +28,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.SplitMenuButton;
 import javafx.scene.control.TextField;
@@ -46,7 +48,6 @@ public class ConnexionController implements Initializable {
 
     @FXML
     private TextField email;
-    @FXML
     private TextField role;
     @FXML
     private Button connexion;
@@ -62,6 +63,16 @@ public class ConnexionController implements Initializable {
     private ImageView lockImageView;
     @FXML
     private Label invalid;
+    @FXML
+    private SplitMenuButton Role;
+    @FXML
+    private MenuItem admin;
+    @FXML
+    private MenuItem client;
+    @FXML
+    private MenuItem coach;
+    @FXML
+    private MenuItem vendeur;
 
     /**
      * Initializes the controller class.
@@ -77,15 +88,15 @@ public class ConnexionController implements Initializable {
     
     
     private void connexion(ActionEvent event) {
-        if (email.getText().isEmpty() == false && mdp.getText().isEmpty() == false  && role.getText().isEmpty() == false)
+        if (email.getText().isEmpty() == false && mdp.getText().isEmpty() == false  && Role.getText().isEmpty() == false)
         {
              cnx = MyDB.getInstance().getConnection();
-             String r = role.getText() ;
+             String r = Role.getText() ;
              System.out.println(r);
              
              
          try {
-         String req = "select * from utilisateur where Email = '" + email.getText()+ "' AND  mdp ='"+ mdp.getText()+ "' and Role = '"+ role.getText()+ "'" ; 
+         String req = "select * from utilisateur where Email = '" + email.getText()+ "' AND  mdp ='"+ mdp.getText()+ "' and Role = '"+ Role.getText()+ "'" ; 
             Statement st = cnx.createStatement();
             ResultSet rs = st.executeQuery(req); 
              if (!rs.isBeforeFirst()){
@@ -128,8 +139,7 @@ public class ConnexionController implements Initializable {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("../GUI/vendeur.fxml"));
             Parent root = loader.load();
             connexion.getScene().setRoot(root);
-
-        } catch (IOException ex) {
+           } catch (IOException ex) {
             Logger.getLogger(VendeurController.class.getName()).log(Level.SEVERE, null, ex);
         }
                          
@@ -161,6 +171,68 @@ public class ConnexionController implements Initializable {
     @FXML
     private void mdpoublié(ActionEvent event) {
         
+    }
+
+    @FXML
+    private void inscription(ActionEvent event) {
+          try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../GUI/inscription.fxml"));
+            Parent root = loader.load();
+            inscription.getScene().setRoot(root);
+           } catch (IOException ex) {
+            Logger.getLogger(InscriptionController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+
+ 
+
+  
+   
+
+    }
+
+    @FXML
+    private void admin(ActionEvent event) {
+         Role.setText("admin");
+    }
+
+    @FXML
+    private void admin(Event event) {
+         Role.setText("admin");
+    }
+
+    @FXML
+    private void client(ActionEvent event) {
+        Role.setText("client");
+    }
+
+    @FXML
+    private void client(Event event) {
+        Role.setText("client");
+    }
+
+    @FXML
+    private void coach(ActionEvent event) {
+         Role.setText("coach");
+    }
+
+    @FXML
+    private void coach(Event event) {
+         Role.setText("coach");
+    }
+
+    @FXML
+    private void vendeur(ActionEvent event) {
+        Role.setText("vendeur");
+    }
+
+    @FXML
+    private void vendeur(Event event) {
+        Role.setText("vendeur");
+    }
+
+    @FXML
+    private void Role(ActionEvent event) {
     }
    
     

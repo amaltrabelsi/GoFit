@@ -17,16 +17,28 @@ public class Utilisateur {
     private String Nom ; 
     private String Prenom;
     private String Email ;
-    private Date Date_de_naissance ;
+    private String Date_de_naissance ;
     private String Sexe;
     private String Region;
     private String Adresse;
     private String Role ;
-
+private String Mdp ;
     public Utilisateur() {
     }
 
-    public Utilisateur(int Utilisateur_Id, String Nom, String Prenom, String Email, Date Date_de_naissance, String Sexe, String Region, String Adresse, String Role) {
+    public Utilisateur(String Nom, String Prenom, String Email, String Date_de_naissance, String Sexe, String Region, String Adresse, String Role, String Mdp) {
+        this.Nom = Nom;
+        this.Prenom = Prenom;
+        this.Email = Email;
+        this.Date_de_naissance = Date_de_naissance;
+        this.Sexe = Sexe;
+        this.Region = Region;
+        this.Adresse = Adresse;
+        this.Role = Role;
+        this.Mdp = Mdp ;
+    }
+
+    public Utilisateur(int Utilisateur_Id, String Nom, String Prenom, String Email,String Date_de_naissance, String Sexe, String Region, String Adresse, String Role) {
         this.Utilisateur_Id = Utilisateur_Id;
         this.Nom = Nom;
         this.Prenom = Prenom;
@@ -38,7 +50,7 @@ public class Utilisateur {
         this.Role = Role;
     }
 
-    public Utilisateur(String Nom, String Prenom, String Email, Date Date_de_naissance, String Sexe, String Region, String Adresse, String Role) {
+    public Utilisateur(String Nom, String Prenom, String Email, String Date_de_naissance, String Sexe, String Region, String Adresse, String Role) {
         this.Nom = Nom;
         this.Prenom = Prenom;
         this.Email = Email;
@@ -81,11 +93,11 @@ public class Utilisateur {
         this.Email = Email;
     }
 
-    public Date getDate_de_naissance() {
+    public String getDate_de_naissance() {
         return Date_de_naissance;
     }
 
-    public void setDate_de_naissance(Date Date_de_naissance) {
+    public void setDate_de_naissance(String Date_de_naissance) {
         this.Date_de_naissance = Date_de_naissance;
     }
 
@@ -121,9 +133,19 @@ public class Utilisateur {
         this.Role = Role;
     }
 
+    public String getMdp() {
+        return Mdp;
+    }
+
+    public void setMdp(String Mdp) {
+        this.Mdp = Mdp;
+    }
+
     @Override
     public String toString() {
-        return "Utilisateur{" + "Utilisateur_Id=" + Utilisateur_Id + ", Nom=" + Nom + ", Prenom=" + Prenom + ", Email=" + Email + ", Date_de_naissance=" + Date_de_naissance + ", Sexe=" + Sexe + ", Region=" + Region + ", Adresse=" + Adresse + ", Role=" + Role + "\n"+'}';
+        return "Utilisateur{" + "Utilisateur_Id=" + Utilisateur_Id + ", Nom=" + Nom + ", Prenom=" + Prenom + ", Email=" + Email + ", Date_de_naissance=" + Date_de_naissance + ", Sexe=" + Sexe + ", Region=" + Region + ", Adresse=" + Adresse + ", Role=" + Role + ", Mdp=" + Mdp + '}';
     }
+
+    
     
 }
