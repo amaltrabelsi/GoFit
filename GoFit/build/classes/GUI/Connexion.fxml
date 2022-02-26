@@ -48,12 +48,12 @@
                   <Image url="@../Images/birdegg.lock.png.png" />
                </image>
             </ImageView>
-            <Label fx:id="invalid" layoutX="317.0" layoutY="243.0" prefHeight="17.0" prefWidth="221.0" textFill="#eb0000">
+            <Label fx:id="invalid" layoutX="315.0" layoutY="231.0" prefHeight="17.0" prefWidth="221.0" textFill="#eb0000">
                <font>
                   <Font name="Arial" size="14.0" />
                </font>
             </Label>
-            <PasswordField fx:id="role" layoutX="400.0" layoutY="181.0" promptText="Role" />
+            <TextField fx:id="role" layoutX="401.0" layoutY="179.0" promptText="Role" />
          </children>
       </AnchorPane>
    </children>

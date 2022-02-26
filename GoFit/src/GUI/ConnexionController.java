@@ -4,9 +4,11 @@
  * and open the template in the editor.
  */
 package GUI;
-
+import entities.Utilisateur;
+import services.ServiceUtilisateur;
 import entities.Utilisateur;
 import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -17,7 +19,11 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
@@ -41,7 +47,7 @@ public class ConnexionController implements Initializable {
     @FXML
     private TextField email;
     @FXML
-    private PasswordField role;
+    private TextField role;
     @FXML
     private Button connexion;
     @FXML
@@ -63,7 +69,7 @@ public class ConnexionController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-     cnx = MyDB.getInstance().getConnection();
+    
     }
 
     @FXML
@@ -71,39 +77,91 @@ public class ConnexionController implements Initializable {
     
     
     private void connexion(ActionEvent event) {
-       
-     String e  = email.getText().toString();
-     String m  = mdp.getText().toString();
-     String r  = role.getText().toString();
-     
-     //query 
-     try {
-            String req ="select * from utilisateur where e= ? and m = ? and role = ? ";
+        if (email.getText().isEmpty() == false && mdp.getText().isEmpty() == false  && role.getText().isEmpty() == false)
+        {
+             cnx = MyDB.getInstance().getConnection();
+             String r = role.getText() ;
+             System.out.println(r);
+             
+             
+         try {
+         String req = "select * from utilisateur where Email = '" + email.getText()+ "' AND  mdp ='"+ mdp.getText()+ "' and Role = '"+ role.getText()+ "'" ; 
             Statement st = cnx.createStatement();
-            ResultSet rs = st.executeQuery(req);
-        	      			
-            while(rs.next()){
-                Utilisateur s = new Utilisateur ();
-                s.setUtilisateur_Id(rs.getInt(1));
-                s.setNom(rs.getString("Nom"));
-                s.setPrenom(rs.getString("Prenom"));
-                s.setEmail(rs.getString("Email"));
-                s.setDate_de_naissance(rs.getDate("Date_de_naissance"));
-                s.setSexe(rs.getString("Sexe"));
-                s.setRegion(rs.getString("Region"));
-                s.setAdresse(rs.getString("Adresse"));
-                s.setRole(rs.getString("Role"));
-               
+            ResultSet rs = st.executeQuery(req); 
+             if (!rs.isBeforeFirst()){
+                // System.out.println("Vérifiez vous paramétres s'il vous plaît !");
+                 Alert alert = new Alert (Alert.AlertType.ERROR);
+                 alert.setContentText("Vérifiez vous paramétres s'il vous plaît !");
+                 alert.show();
+             } else { 
+                 switch (r) {
+                     case "admin": 
+                          try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../GUI/admin.fxml"));
+            Parent root = loader.load();
+            connexion.getScene().setRoot(root);
+
+        } catch (IOException ex) {
+            Logger.getLogger(AdminController.class.getName()).log(Level.SEVERE, null, ex);
+        }; break;
+                     case "client": 
+                 try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../GUI/Welcome.fxml"));
+            Parent root = loader.load();
+            connexion.getScene().setRoot(root);
+
+        } catch (IOException ex) {
+            Logger.getLogger(WelcomeController.class.getName()).log(Level.SEVERE, null, ex);
+        }; break;
+                      case "coach": 
+                 try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../GUI/coach.fxml"));
+            Parent root = loader.load();
+            connexion.getScene().setRoot(root);
+
+        } catch (IOException ex) {
+            Logger.getLogger(CoachController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+                 
+                      case "vendeur": 
+                 try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../GUI/vendeur.fxml"));
+            Parent root = loader.load();
+            connexion.getScene().setRoot(root);
+
+        } catch (IOException ex) {
+            Logger.getLogger(VendeurController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+                         
+                         
+                 }
+                
+                
+           
             }
-            
-        } catch (SQLException ex) {
-            Logger.getLogger(ServiceUtilisateur.class.getName()).log(Level.SEVERE, null, ex);
+           
+             
+             
+         } catch (Exception e) {
+             e.printStackTrace();
+             e.getCause();
+             
+         }
+   
+
+        } else {
+             Alert alert = new Alert (Alert.AlertType.ERROR);
+                 alert.setContentText("Remplir vos coordonées s'il vous plaît ");
+                 alert.show();
+            //invalid.setText("Remplir vos coordonées s'il vous plaît ");
         }
        
     }
 
     @FXML
     private void mdpoublié(ActionEvent event) {
+        
     }
-
+   
+    
 }

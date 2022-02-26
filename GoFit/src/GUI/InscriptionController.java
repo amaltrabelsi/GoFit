@@ -56,4 +56,5 @@ public class InscriptionController implements Initializable {
         // TODO
     }    
     
+    
 }

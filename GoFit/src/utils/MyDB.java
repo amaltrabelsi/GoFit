@@ -17,7 +17,7 @@ import java.util.logging.Logger;
  */
 public class MyDB {
     
-    private String url ="jdbc:mysql://localhost/3a12"; // :3306 (port mysql)
+    private String url ="jdbc:mysql://localhost/gofitamal"; // :3306 (port mysql)
     private String user ="root";
     private String pass ="";
     private Connection connection;
