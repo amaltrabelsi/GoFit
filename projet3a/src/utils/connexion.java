@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package utilis;
+package utils;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -16,7 +16,7 @@ import java.util.logging.Logger;
  */
 public class connexion {
     
-    private String url ="jdbc:mysql://localhost/gofitiheb"; 
+    private String url ="jdbc:mysql://localhost/3a12"; 
     private String user ="root";
     private String pass ="";
     private Connection connection;

@@ -6,7 +6,9 @@
 package tests;
 import java.sql.Date;
 import entites.Avis ;
+import entites.Reclamation ;
 import services.ServicesAvis ;
+import services.ServicesReclamation ;
 /**
  *
  * @author HP 840 G3
@@ -14,6 +16,8 @@ import services.ServicesAvis ;
 public class main {
     
     public static void main(String[] args) {
+       ServicesReclamation r =  new ServicesReclamation () ;
+       r.ajout( new Reclamation("zsertyui"));
      
     }
 }
