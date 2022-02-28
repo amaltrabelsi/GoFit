@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import utilis.connexion;
+import utils.connexion;
 /**
  *
  * @author HP 840 G3
@@ -29,10 +29,12 @@ public class ServicesAvis  implements Iservices<Avis>{
     @Override
     public void ajout(Avis t) {
         try {
-            String req = "insert into Avis (Likes , Dislike) values"
-                    + " ('" + t.getLikes() + "' ,'" + t.getDislike() + "' )";
+            String req = "insert into Avis (Valeur) values ('" + t.getValeur()+ "')";
                    Statement st = cnx.createStatement();
                     st.executeUpdate(req);
+                  
+               
+                     
         } catch (SQLException ex) {
             Logger.getLogger(ServicesAvis.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -42,11 +44,10 @@ public class ServicesAvis  implements Iservices<Avis>{
     @Override
     public void modifier(Avis t) {
         try {
-            String req = "update Avis set Likes = ? , Dislike = ?  where Avis_Id = ?";
+            String req = "update Avis set Valeur = ? where Avis_Id = ?";
             PreparedStatement ps = cnx.prepareStatement(req);
-            ps.setInt(1, t.getLikes());
-            ps.setInt(2, t.getDislike());
-            ps.setInt(3, t.getAvis_Id());
+            ps.setString(1, t.getValeur());
+            ps.setInt(2, t.getAvis_Id());
             ps.executeUpdate();
             
         } catch (SQLException ex) {
@@ -78,8 +79,7 @@ public class ServicesAvis  implements Iservices<Avis>{
             while(rs.next()){
                 Avis s = new Avis();
                 s.setAvis_Id(rs.getInt(1));
-                s.setLikes(rs.getInt("Likes"));
-                s.setDislike(rs.getInt("Dislike"));
+                s.setValeur(rs.getString("Valeur"));
                 list.add(s);
             }
             

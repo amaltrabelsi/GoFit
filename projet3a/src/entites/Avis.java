@@ -13,21 +13,19 @@ public class Avis {
 
    
     private int Avis_Id;
-    private int Likes;
-    private int Dislike;
+    private String Valeur;
+    
 
     public Avis() {
     }
-   
-     public Avis(int Avis_Id, int Likes, int Dislike) {
+
+    public Avis(int Avis_Id, String Valeur) {
         this.Avis_Id = Avis_Id;
-        this.Likes = Likes;
-        this.Dislike = Dislike;
+        this.Valeur = Valeur;
     }
 
-    public Avis(int Likes, int Dislike) {
-        this.Likes = Likes;
-        this.Dislike = Dislike;
+    public Avis(String Valeur) {
+        this.Valeur = Valeur;
     }
 
     public int getAvis_Id() {
@@ -38,26 +36,12 @@ public class Avis {
         this.Avis_Id = Avis_Id;
     }
 
-    public int getLikes() {
-        return Likes;
+    public String getValeur() {
+        return Valeur;
     }
 
-    public void setLikes(int Likes) {
-        this.Likes = Likes;
+    public void setValeur(String Valeur) {
+        this.Valeur = Valeur;
     }
-
-    public int getDislike() {
-        return Dislike;
-    }
-
-    public void setDislike(int Dislike) {
-        this.Dislike = Dislike;
-    }
-
-    @Override
-    public String toString() {
-        return "Avis{" + "Avis_Id=" + Avis_Id + ", Likes=" + Likes + ", Dislike=" + Dislike + '}';
-    }
-     
     
 }
