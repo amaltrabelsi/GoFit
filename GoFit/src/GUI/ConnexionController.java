@@ -14,6 +14,9 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -34,8 +37,14 @@ import javafx.scene.control.SplitMenuButton;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
+import javafx.util.Duration;
 import services.ServiceUtilisateur;
+import tray.animations.AnimationType;
 import utils.MyDB;
+import tray.notification.NotificationType;
+import tray.notification.TrayNotification;
+import services.IService;
 
 /**
  * FXML Controller class
@@ -50,15 +59,13 @@ public class ConnexionController implements Initializable {
     private TextField email;
     private TextField role;
     @FXML
-    private Button connexion;
+    private AnchorPane connexion;
     @FXML
     private Hyperlink mdpoublié;
     @FXML
     private Hyperlink inscription;
     @FXML
     private PasswordField mdp;
-    @FXML
-    private ImageView brandingImageView;
     @FXML
     private ImageView lockImageView;
     @FXML
@@ -73,6 +80,24 @@ public class ConnexionController implements Initializable {
     private MenuItem coach;
     @FXML
     private MenuItem vendeur;
+    @FXML
+    private ImageView brandingImageView1;
+    @FXML
+    private AnchorPane rec3;
+    @FXML
+    private AnchorPane rec2;
+    @FXML
+    private TextField num;
+    @FXML
+    private Button envoyer;
+    @FXML
+    private TextField nvmdp;
+    @FXML
+    private TextField cnvmdp;
+    @FXML
+    private Button valide;
+    @FXML
+    private ImageView brandingImageView11;
 
     /**
      * Initializes the controller class.
@@ -87,12 +112,13 @@ public class ConnexionController implements Initializable {
         
     
     
-    private void connexion(ActionEvent event) {
+    private void connexion(ActionEvent event) throws SQLException {
         if (email.getText().isEmpty() == false && mdp.getText().isEmpty() == false  && Role.getText().isEmpty() == false)
         {
              cnx = MyDB.getInstance().getConnection();
              String r = Role.getText() ;
              System.out.println(r);
+             chaine();
              
              
          try {
@@ -107,58 +133,88 @@ public class ConnexionController implements Initializable {
              } else { 
                  switch (r) {
                      case "admin": 
+                         
                           try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("../GUI/admin.fxml"));
+                              
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../GUI/LISTE USER.fxml"));
             Parent root = loader.load();
             connexion.getScene().setRoot(root);
-
+            
+        
+               
         } catch (IOException ex) {
             Logger.getLogger(AdminController.class.getName()).log(Level.SEVERE, null, ex);
-        }; break;
+        }
+                          TrayNotification tray = new TrayNotification();
+        AnimationType type = AnimationType.POPUP;
+        tray.setAnimationType (type);
+        tray.setTitle("Bienvenue");
+        tray.setMessage("Bienvenue Dans notre application Cher Admin"+mdp.getText());
+        tray.setNotificationType(NotificationType.SUCCESS);
+        tray.showAndDismiss(Duration.millis(3000));
+                          ; break;
+        
                      case "client": 
                  try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("../GUI/Welcome.fxml"));
             Parent root = loader.load();
             connexion.getScene().setRoot(root);
+           
 
         } catch (IOException ex) {
             Logger.getLogger(WelcomeController.class.getName()).log(Level.SEVERE, null, ex);
-        }; break;
+        }
+                 TrayNotification tra = new TrayNotification();
+        AnimationType typ = AnimationType.POPUP;
+        tra.setAnimationType (typ);
+        tra.setTitle("Bienvenue");
+        tra.setMessage("Bienvenue Dans notre application Cher Client");
+        tra.setNotificationType(NotificationType.SUCCESS);
+        tra.showAndDismiss(Duration.millis(3000));
+                 ; break;
                       case "coach": 
-                 try {
+                      try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("../GUI/coach.fxml"));
             Parent root = loader.load();
             connexion.getScene().setRoot(root);
-
-        } catch (IOException ex) {
+                 } catch (IOException ex) {
             Logger.getLogger(CoachController.class.getName()).log(Level.SEVERE, null, ex);
         }
-                 
+                      TrayNotification tr = new TrayNotification();
+        AnimationType ty = AnimationType.POPUP;
+        tr.setAnimationType (ty);
+        tr.setTitle("Bienvenue");
+        tr.setMessage("Bienvenue Dans notre application Cher Coach");
+        tr.setNotificationType(NotificationType.SUCCESS);
+        tr.showAndDismiss(Duration.millis(3000));
+                ; break;     
                       case "vendeur": 
-                 try {
+                      try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("../GUI/vendeur.fxml"));
             Parent root = loader.load();
             connexion.getScene().setRoot(root);
            } catch (IOException ex) {
-            Logger.getLogger(VendeurController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-                         
-                         
+            Logger.getLogger(VendeurController.class.getName()).log(Level.SEVERE, null, ex);}
+                      
+                      TrayNotification t= new TrayNotification();
+        AnimationType y = AnimationType.POPUP;
+        t.setAnimationType (y);
+        t.setTitle("Bienvenue");
+        t.setMessage("Bienvenue Dans notre application Cher Vendeur");
+        t.setNotificationType(NotificationType.SUCCESS);
+        t.showAndDismiss(Duration.millis(3000));
+                      ; break;
                  }
-                
-                
-           
-            }
-           
-             
-             
-         } catch (Exception e) {
+         
+   
+      
+         }} catch (Exception e) {
              e.printStackTrace();
              e.getCause();
              
-         }
-   
-
+         }   
+         
+       
         } else {
              Alert alert = new Alert (Alert.AlertType.ERROR);
                  alert.setContentText("Remplir vos coordonées s'il vous plaît ");
@@ -173,14 +229,13 @@ public class ConnexionController implements Initializable {
         
     }
 
-    @FXML
     private void inscription(ActionEvent event) {
           try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("../GUI/inscription.fxml"));
             Parent root = loader.load();
             inscription.getScene().setRoot(root);
            } catch (IOException ex) {
-            Logger.getLogger(InscriptionController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ConnexionController.class.getName()).log(Level.SEVERE, null, ex);
         }
         
 
@@ -234,6 +289,29 @@ public class ConnexionController implements Initializable {
     @FXML
     private void Role(ActionEvent event) {
     }
-   
+    public void chaine (){
+    for(int x=0; x<=26; x++)
+         {
+ 
+         	Random random=new Random();
+            int val=65 + random.nextInt(123);
+ 
+             // Afficher le caractère généré
+             System.out.printf("%c",val);
+         } }
+
+    @FXML
+    private void inscri(ActionEvent event) {
+        
+    }
+
+    @FXML
+    private void envoyer(ActionEvent event) {
+    }
+
+    @FXML
+    private void valide(ActionEvent event) {
+    }
     
+   
 }

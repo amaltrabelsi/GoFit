@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="615.0" prefWidth="1175.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.LISTEUSERController">
+   <children>
+      <TableView fx:id="tableview" layoutX="189.0" layoutY="38.0" prefHeight="374.0" prefWidth="902.0">
+        <columns>
+          <TableColumn fx:id="id" prefWidth="75.0" text="ID" />
+          <TableColumn fx:id="nom" prefWidth="75.0" text="NOM" />
+            <TableColumn fx:id="prenom" prefWidth="75.0" text="PRENOM" />
+            <TableColumn fx:id="email" prefWidth="75.0" text="EMAIL" />
+            <TableColumn fx:id="tel" prefWidth="75.0" text="TELEPHONE" />
+            <TableColumn fx:id="date" prefWidth="75.0" text="DATE" />
+            <TableColumn fx:id="role" prefWidth="75.0" text="ROLE" />
+            <TableColumn fx:id="region" prefWidth="75.0" text="REGION" />
+            <TableColumn fx:id="adresse" prefWidth="75.0" text="ADRESSE" />
+            <TableColumn fx:id="sexe" prefWidth="75.0" text="SEXE" />
+            <TableColumn fx:id="mdp" prefWidth="75.0" text="MOT DE PASSE" />
+            <TableColumn prefWidth="75.0" text="ACTION" />
+        </columns>
+      </TableView>
+      <TextField fx:id="idd" layoutX="399.0" layoutY="437.0" prefHeight="25.0" prefWidth="79.0" promptText="id" />
+      <Button fx:id="supprimer" layoutX="502.0" layoutY="437.0" mnemonicParsing="false" onAction="#supprimer" text="Supprimer" />
+      <TextField fx:id="idmodif" layoutX="14.0" layoutY="89.0" promptText="id" />
+      <TextField fx:id="prenommodif" layoutX="14.0" layoutY="163.0" promptText="Prenom" />
+      <TextField fx:id="adressemodif" layoutX="14.0" layoutY="199.0" promptText="Adresse" />
+      <TextField fx:id="rolemodif" layoutX="14.0" layoutY="237.0" promptText="Role" />
+      <TextField fx:id="regionmodif" layoutX="14.0" layoutY="270.0" promptText="Region" />
+      <TextField fx:id="sexemodif" layoutX="14.0" layoutY="309.0" promptText="Sexe" />
+      <TextField fx:id="nummodif" layoutX="14.0" layoutY="344.0" promptText="Numéro" />
+      <TextField fx:id="nommodif" layoutX="14.0" layoutY="127.0" promptText="Nom" />
+      <Button fx:id="modifier" layoutX="63.0" layoutY="482.0" mnemonicParsing="false" onAction="#modifier" prefHeight="25.0" prefWidth="107.0" text="Modifier" />
+      <TextField fx:id="datemodif" layoutX="14.0" layoutY="379.0" promptText="Date de naissance" />
+      <TextField fx:id="mdpmodif" layoutX="12.0" layoutY="415.0" promptText="mot de passe" />
+      <TextField fx:id="emailmodif" layoutX="12.0" layoutY="448.0" promptText="Email" />
+   </children>
+</AnchorPane>

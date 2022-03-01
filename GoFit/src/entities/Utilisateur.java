@@ -22,10 +22,39 @@ public class Utilisateur {
     private String Region;
     private String Adresse;
     private String Role ;
+    private String numero ;
 private String Mdp ;
     public Utilisateur() {
     }
 
+    public Utilisateur(int Utilisateur_Id, String Nom, String Prenom, String Email, String Date_de_naissance, String Sexe, String Region, String Adresse, String Role, String numero, String Mdp) {
+        this.Utilisateur_Id = Utilisateur_Id;
+        this.Nom = Nom;
+        this.Prenom = Prenom;
+        this.Email = Email;
+        this.Date_de_naissance = Date_de_naissance;
+        this.Sexe = Sexe;
+        this.Region = Region;
+        this.Adresse = Adresse;
+        this.Role = Role;
+        this.numero = numero;
+        this.Mdp = Mdp;
+    }
+
+    public Utilisateur(String Nom, String Prenom, String Email, String Date_de_naissance, String Sexe, String Region, String Adresse, String Role, String numero, String Mdp) {
+        this.Nom = Nom;
+        this.Prenom = Prenom;
+        this.Email = Email;
+        this.Date_de_naissance = Date_de_naissance;
+        this.Sexe = Sexe;
+        this.Region = Region;
+        this.Adresse = Adresse;
+        this.Role = Role;
+        this.numero = numero;
+        this.Mdp = Mdp;
+    }
+
+    
     public Utilisateur(String Nom, String Prenom, String Email, String Date_de_naissance, String Sexe, String Region, String Adresse, String Role, String Mdp) {
         this.Nom = Nom;
         this.Prenom = Prenom;
@@ -141,11 +170,19 @@ private String Mdp ;
         this.Mdp = Mdp;
     }
 
-    @Override
-    public String toString() {
-        return "Utilisateur{" + "Utilisateur_Id=" + Utilisateur_Id + ", Nom=" + Nom + ", Prenom=" + Prenom + ", Email=" + Email + ", Date_de_naissance=" + Date_de_naissance + ", Sexe=" + Sexe + ", Region=" + Region + ", Adresse=" + Adresse + ", Role=" + Role + ", Mdp=" + Mdp + '}';
+    public String getNumero() {
+        return numero;
     }
 
-    
+    public void setNumero(String numero) {
+        this.numero = numero;
+    }
+
+    @Override
+    public String toString() {
+        return "Utilisateur{" + "Utilisateur_Id=" + Utilisateur_Id + ", Nom=" + Nom + ", Prenom=" + Prenom + ", Email=" + Email + ", Date_de_naissance=" + Date_de_naissance + ", Sexe=" + Sexe + ", Region=" + Region + ", Adresse=" + Adresse + ", Role=" + Role + ", numero=" + numero + ", Mdp=" + Mdp + '}';
+    }
+
+  
     
 }
