@@ -24,10 +24,12 @@ public class Utilisateur {
     private String Role ;
     private String numero ;
 private String Mdp ;
-    public Utilisateur() {
+ private String reponse ;
+  private String question ; 
+public Utilisateur() {
     }
 
-    public Utilisateur(int Utilisateur_Id, String Nom, String Prenom, String Email, String Date_de_naissance, String Sexe, String Region, String Adresse, String Role, String numero, String Mdp) {
+    public Utilisateur(int Utilisateur_Id, String Nom, String Prenom, String Email, String Date_de_naissance, String Sexe, String Region, String Adresse, String Role, String numero, String Mdp, String reponse, String question) {
         this.Utilisateur_Id = Utilisateur_Id;
         this.Nom = Nom;
         this.Prenom = Prenom;
@@ -39,9 +41,11 @@ private String Mdp ;
         this.Role = Role;
         this.numero = numero;
         this.Mdp = Mdp;
+        this.reponse = reponse;
+        this.question = question;
     }
 
-    public Utilisateur(String Nom, String Prenom, String Email, String Date_de_naissance, String Sexe, String Region, String Adresse, String Role, String numero, String Mdp) {
+    public Utilisateur(String Nom, String Prenom, String Email, String Date_de_naissance, String Sexe, String Region, String Adresse, String Role, String numero, String Mdp, String reponse, String question) {
         this.Nom = Nom;
         this.Prenom = Prenom;
         this.Email = Email;
@@ -52,42 +56,8 @@ private String Mdp ;
         this.Role = Role;
         this.numero = numero;
         this.Mdp = Mdp;
-    }
-
-    
-    public Utilisateur(String Nom, String Prenom, String Email, String Date_de_naissance, String Sexe, String Region, String Adresse, String Role, String Mdp) {
-        this.Nom = Nom;
-        this.Prenom = Prenom;
-        this.Email = Email;
-        this.Date_de_naissance = Date_de_naissance;
-        this.Sexe = Sexe;
-        this.Region = Region;
-        this.Adresse = Adresse;
-        this.Role = Role;
-        this.Mdp = Mdp ;
-    }
-
-    public Utilisateur(int Utilisateur_Id, String Nom, String Prenom, String Email,String Date_de_naissance, String Sexe, String Region, String Adresse, String Role) {
-        this.Utilisateur_Id = Utilisateur_Id;
-        this.Nom = Nom;
-        this.Prenom = Prenom;
-        this.Email = Email;
-        this.Date_de_naissance = Date_de_naissance;
-        this.Sexe = Sexe;
-        this.Region = Region;
-        this.Adresse = Adresse;
-        this.Role = Role;
-    }
-
-    public Utilisateur(String Nom, String Prenom, String Email, String Date_de_naissance, String Sexe, String Region, String Adresse, String Role) {
-        this.Nom = Nom;
-        this.Prenom = Prenom;
-        this.Email = Email;
-        this.Date_de_naissance = Date_de_naissance;
-        this.Sexe = Sexe;
-        this.Region = Region;
-        this.Adresse = Adresse;
-        this.Role = Role;
+        this.reponse = reponse;
+        this.question = question;
     }
 
     public int getUtilisateur_Id() {
@@ -162,14 +132,6 @@ private String Mdp ;
         this.Role = Role;
     }
 
-    public String getMdp() {
-        return Mdp;
-    }
-
-    public void setMdp(String Mdp) {
-        this.Mdp = Mdp;
-    }
-
     public String getNumero() {
         return numero;
     }
@@ -178,11 +140,33 @@ private String Mdp ;
         this.numero = numero;
     }
 
-    @Override
-    public String toString() {
-        return "Utilisateur{" + "Utilisateur_Id=" + Utilisateur_Id + ", Nom=" + Nom + ", Prenom=" + Prenom + ", Email=" + Email + ", Date_de_naissance=" + Date_de_naissance + ", Sexe=" + Sexe + ", Region=" + Region + ", Adresse=" + Adresse + ", Role=" + Role + ", numero=" + numero + ", Mdp=" + Mdp + '}';
+    public String getMdp() {
+        return Mdp;
     }
 
-  
-    
+    public void setMdp(String Mdp) {
+        this.Mdp = Mdp;
+    }
+
+    public String getReponse() {
+        return reponse;
+    }
+
+    public void setReponse(String reponse) {
+        this.reponse = reponse;
+    }
+
+    public String getQuestion() {
+        return question;
+    }
+
+    public void setQuestion(String question) {
+        this.question = question;
+    }
+
+    @Override
+    public String toString() {
+        return "Utilisateur{" + "Utilisateur_Id=" + Utilisateur_Id + ", Nom=" + Nom + ", Prenom=" + Prenom + ", Email=" + Email + ", Date_de_naissance=" + Date_de_naissance + ", Sexe=" + Sexe + ", Region=" + Region + ", Adresse=" + Adresse + ", Role=" + Role + ", numero=" + numero + ", Mdp=" + Mdp + ", reponse=" + reponse + ", question=" + question + '}';
+    }
+
 }

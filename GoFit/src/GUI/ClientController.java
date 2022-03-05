@@ -31,11 +31,13 @@ public class ClientController implements Initializable {
     @FXML
     private Button Reclamation;
     @FXML
-    private Button panier;
-    @FXML
     private Button event;
     @FXML
-    private Label nomprenom;
+    private Label email;
+    @FXML
+    private Label labelnom;
+    @FXML
+    private Label labelprenom;
 
     /**
      * Initializes the controller class.
@@ -65,9 +67,6 @@ public class ClientController implements Initializable {
     private void reclamation(ActionEvent event) {
     }
 
-    @FXML
-    private void panier(ActionEvent event) {
-    }
 
     @FXML
     private void event(ActionEvent event) {

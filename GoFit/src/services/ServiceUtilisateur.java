@@ -31,8 +31,8 @@ Connection cnx;
     public void ajout(Utilisateur t) {
         try {	
 
-            String req = "insert into utilisateur (Nom,Prenom,Email,Date_de_naissance,Sexe,Region,Adresse,Role,Mdp,numero) values"
-                    + " ('" + t.getNom() + "','" + t.getPrenom() + "','" + t.getEmail() + "','" + t.getDate_de_naissance() + "','" + t.getSexe() + "','" + t.getRegion() + "','" + t.getAdresse() + "' ,'" + t.getRole() + "','" + t.getMdp() + "','"+t.getNumero()+"')";
+            String req = "insert into utilisateur (Nom,Prenom,Email,Date_de_naissance,Sexe,Region,Adresse,Role,Mdp,numero,reponse,question) values"
+                    + " ('" + t.getNom() + "','" + t.getPrenom() + "','" + t.getEmail() + "','" + t.getDate_de_naissance() + "','" + t.getSexe() + "','" + t.getRegion() + "','" + t.getAdresse() + "' ,'" + t.getRole() + "','" + t.getMdp() + "','"+t.getNumero()+"','"+t.getReponse()+"','"+t.getQuestion()+"')";
                     Statement st = cnx.createStatement();
                     st.executeUpdate(req);
         } catch (SQLException ex) {
@@ -44,7 +44,7 @@ Connection cnx;
     @Override
     public void modifier(Utilisateur t) {
         try {
-            String req = "update utilisateur set Nom=?,Prenom=?,Email=?,Date_de_naissance=?,Sexe=?,Region=?,Adresse=?,Role=?  , Mdp =? , numero =? where Utilisateur_Id = ?";
+            String req = "update utilisateur set Nom=?,Prenom=?,Email=?,Date_de_naissance=?,Sexe=?,Region=?,Adresse=?,Role=?  , Mdp =? , numero =? , reponse =? ,question = ? where Utilisateur_Id = ?";
             PreparedStatement ps = cnx.prepareStatement(req);
             ps.setString(1, t.getNom());
             ps.setString(2, t.getPrenom());
@@ -56,6 +56,8 @@ Connection cnx;
             ps.setString(8, t.getRole());
             ps.setString(9, t.getMdp());
             ps.setString(10, t.getNumero());
+             ps.setString(11, t.getReponse());
+              ps.setString(12, t.getQuestion());
             ps.setInt(1, t.getUtilisateur_Id());
             ps.executeUpdate();
             
@@ -98,6 +100,8 @@ Connection cnx;
                 s.setRole(rs.getString("Role"));
                 s.setMdp(rs.getString("Mdp"));
                  s.setNumero(rs.getString("numero"));
+                 s.setReponse(rs.getString("reponse"));
+                 s.setQuestion(rs.getString("question"));
                 
                 list.add(s);
             }
