@@ -17,7 +17,7 @@ public class main {
     
     public static void main(String[] args) {
        ServicesReclamation r =  new ServicesReclamation () ;
-       r.ajout( new Reclamation("zsertyui"));
+      r.modifier(new Reclamation (1,"bbbbb","zzzz","lkkkk","mmmm"));
      
     }
 }

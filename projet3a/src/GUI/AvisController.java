@@ -38,6 +38,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import utils.connexion;
 import javafx.scene.paint.Color;
+import static javafx.scene.paint.Color.color;
 
 /**
  * FXML Controller class
@@ -62,75 +63,75 @@ Connection cnx;
     Image Im4 = new  Image(getClass().getResourceAsStream("../Images/like done.png"));
     
     ServicesAvis avi = new  ServicesAvis  () ;
-    @FXML
-    private PieChart PieChart;
-    @FXML
-    private BarChart<?, ?> BarChart;
-    @FXML
-    private NumberAxis y;
-    @FXML
-    private CategoryAxis x;
+  
     @FXML
     private LineChart<?, ?> LineChart;
-    private AreaChart<?, ?> AreaChart;
-    private StackedBarChart<?, ?> StackedBarChart;
-    @FXML
-    private BarChart<?, ?> BarChart1;
-    @FXML
-    private NumberAxis y1;
-    @FXML
-    private CategoryAxis x1;
     @FXML
     private Label notext;
     @FXML
     private Label yestext;
     @FXML
     private Label review;
+    @FXML
+    private AreaChart<?, ?> LineChart1;
+    @FXML
+    private NumberAxis y;
+    @FXML
+    private CategoryAxis x;
+    @FXML
+    private NumberAxis Y;
+    @FXML
+    private CategoryAxis X;
      
     /**
      * Initializes the controller class.
+     * @param url
+     * @param rb
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
          cnx = connexion.getInstance().getConnection();
-         DateTimeFormatter dft = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
-         LocalDateTime now = LocalDateTime.now();
-         System.out.println(dft.format(now));
          Statement st;
           try {
         st = cnx.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_UPDATABLE);
-             String s = ("select Valeur,count(*) as count FROM Avis  where  Valeur = 'like' ");
+             String s = ("select Valeur,count(*) as countlike FROM Avis  where  Valeur = 'like' ");
              ResultSet rc =st.executeQuery(s);
              rc.next();
-             int count = rc.getInt("count");
-             
-               String s2 = ("select Valeur,count(*) as count FROM Avis  where  Valeur = 'Dislike' ");
+             int countlike = rc.getInt("countlike");
+             String s2 = ("select Valeur,count(*) as countdislike FROM Avis  where  Valeur = 'Dislike' ");
              ResultSet rc2 =st.executeQuery(s2);
              rc2.next();
-             int c = rc2.getInt("count");
-             System.out.println(c);
-             notext.setText(""+c);
+             int countdislike = rc2.getInt("countdislike");
+             System.out.println("dislike"+countdislike);
+             notext.setText(""+countdislike);
+             // count => like // c => dislike 
              XYChart.Series se1 =new XYChart.Series <>();
-             se1.getData().add(new XYChart.Data(date(),c)); 
-            BarChart1.getData().add(se1);
-            BarChart1.setTitle("les statistiques de dislikes ");
-           LineChart.getData().add(se1);
-            System.out.println(count);
-             yestext.setText(""+count);
+             se1.getData().add(new XYChart.Data(date(),countdislike));  
+             LineChart1.getData().add(se1);
+             LineChart1.setLegendVisible(false);
+            System.out.println("like"+countlike);
+             yestext.setText(""+countlike);
              XYChart.Series se12 =new XYChart.Series <>();
-            se1.getData().add(new XYChart.Data(dft.format(now),count)); 
-            BarChart.setTitle("les statistiques des likes");
-            BarChart.getData().add(se12);
+            se12.getData().add(new XYChart.Data(date(),countlike));
+            x.setLabel("date");
+            y.setLabel("Nombre de personnes");
+            X.setLabel("date");
+            Y.setLabel("Nombre de personnes");
             LineChart.getData().add(se12);
-           float somme = count+c ; 
-           // System.out.println("somme est "+somme);
-            double porlike = Math.floor(((count /somme)*100)*100)/100;
-            
+            LineChart.setLegendVisible(false);
+           
+           float somme = countlike+countdislike ; 
+           System.out.println("somme est "+somme);
+           if (somme ==0){
+                review.setText("0 % des clients recommandent ce produit"); 
+           } else {
+            double porlike = Math.floor(((countlike /somme)*100)*100)/100;
+             review.setText(""+porlike +"% des clients recommandent ce produit"); }
+     
            // System.out.println("count est"+count);
            // System.out.println("% est "+porlike);
            
-           review.setText(""+porlike +"personne qui ont recommendé ce produit");
- 
+
     } catch (SQLException ex) {
         Logger.getLogger(AvisController.class.getName()).log(Level.SEVERE, null, ex);
     } 
@@ -155,7 +156,7 @@ Connection cnx;
            ResultSet rs = st.executeQuery("select @@IDENTITY From Avis ");
              while (rs.next()){
             int val = rs.getInt(1);
-            System.out.println(val);
+            //System.out.println(val);
         avi.supprimer(val);  
           dislike.setImage(Im2);
           yes.setVisible(true);
@@ -174,8 +175,7 @@ Connection cnx;
              int c = rc2.getInt("count");
              XYChart.Series se1 =new XYChart.Series <>();
             se1.getData().add(new XYChart.Data(date(),c)); 
-            BarChart1.getData().add(se1);
-             LineChart.getData().add(se1);
+             LineChart1.getData().add(se1);
                float somme = count+c ; 
            // System.out.println("somme est "+somme);
             double porlike = Math.floor(((count /somme)*100)*100)/100;
@@ -183,8 +183,8 @@ Connection cnx;
            // System.out.println("count est"+count);
            // System.out.println("% est "+porlike);
            
-           review.setText(""+porlike +"personne qui ont recommendé ce produit");
-      
+           review.setText(""+porlike +"% des clients recommandent ce produit");
+      notext.setText(""+c);
  
     } catch (SQLException ex) {
         Logger.getLogger(AvisController.class.getName()).log(Level.SEVERE, null, ex);
@@ -226,19 +226,13 @@ Connection cnx;
              rc2.next();
              int c = rc2.getInt("count");
              XYChart.Series se1 =new XYChart.Series <>();
-            se1.getData().add(new XYChart.Data(date(),count)); 
-            BarChart.getData().add(se1);
+            se1.getData().add(new XYChart.Data(date(),count)); //date X , count Y
            LineChart.getData().add(se1);
            yestext.setText(""+count);
              float somme = count+c ; 
-           // System.out.println("somme est "+somme);
             double porlike = Math.floor(((count /somme)*100)*100)/100;
-            
-           // System.out.println("count est"+count);
-           // System.out.println("% est "+porlike);
-           
-           review.setText(""+porlike +"personne qui ont recommendé ce produit");
-           
+ review.setText(""+porlike +"% des clients recommandent ce produit");
+
     } catch (SQLException ex) {
         Logger.getLogger(AvisController.class.getName()).log(Level.SEVERE, null, ex);
     } }

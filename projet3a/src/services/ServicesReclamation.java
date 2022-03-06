@@ -29,8 +29,8 @@ public class ServicesReclamation implements Iservices<Reclamation>{
     @Override
     public void ajout(Reclamation t) {
         try {
-            String req = "insert into Reclamation (Contenu ) values"
-                    + " ('" + t.getContenu() + "'  )";
+            String req = "insert into Reclamation (Contenu ,Email ,Categorie,date) values"
+                    + " ('" + t.getContenu() + "' ,'" + t.getEmail() + "' ,'" + t.getCategorie() + "','" + t.getDate() + "'  )";
                    Statement st = cnx.createStatement();
                     st.executeUpdate(req);
         } catch (SQLException ex) {
@@ -42,12 +42,15 @@ public class ServicesReclamation implements Iservices<Reclamation>{
     @Override
     public void modifier(Reclamation t) {
         try {
-            String req = "update Reclamation set Contenu = ? ,   where Reeclamation_Id = ?";
+            String req = "update Reclamation set Contenu = ? , Email = ? , Categorie =? , date=?   where Reclamation_Id = ?";
             PreparedStatement ps = cnx.prepareStatement(req);
             ps.setString(1, t.getContenu());
-            ps.setInt(2, t.getReclamation_Id());
+            ps.setString(2, t.getEmail());
+            ps.setString(3, t.getCategorie());
+            ps.setString(4, t.getDate());
+            ps.setInt(5, t.getReclamation_Id());
             ps.executeUpdate();
-            
+       
         } catch (SQLException ex) {
             Logger.getLogger(ServicesAvis.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -78,6 +81,9 @@ public class ServicesReclamation implements Iservices<Reclamation>{
                 Reclamation s = new Reclamation();
                 s.setReclamation_Id(rs.getInt(1));
                 s.setContenu(rs.getString("Contenu"));
+                s.setEmail(rs.getString("Email"));
+                s.setCategorie(rs.getString("Categorie"));
+                s.setDate(rs.getString("date"));
                 list.add(s);
             }
             

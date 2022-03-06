@@ -1,57 +1,61 @@
-<?xml version="1.0" encoding="UTF-8"?>
+ <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.AreaChart?>
 <?import javafx.scene.chart.CategoryAxis?>
 <?import javafx.scene.chart.LineChart?>
 <?import javafx.scene.chart.NumberAxis?>
-<?import javafx.scene.chart.PieChart?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ToggleButton?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.AvisController">
    <children>
-      <ImageView fx:id="dislike" fitHeight="111.0" fitWidth="111.0" layoutX="4.0" layoutY="17.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="dislike" fitHeight="59.0" fitWidth="56.0" layoutX="369.0" layoutY="35.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../Images/dislike.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="like" fitHeight="111.0" fitWidth="112.0" layoutX="223.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="like" fitHeight="56.0" fitWidth="56.0" layoutX="610.0" layoutY="26.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../Images/like.png" />
          </image>
       </ImageView>
-      <ToggleButton fx:id="no" layoutX="1.0" layoutY="31.0" mnemonicParsing="false" onAction="#no" opacity="0.0" prefHeight="59.0" prefWidth="111.0" />
-      <ToggleButton fx:id="yes" layoutX="212.0" layoutY="54.0" mnemonicParsing="false" onAction="#yes" opacity="0.0" prefHeight="68.0" prefWidth="126.0" />
-      <PieChart fx:id="PieChart" layoutX="394.0" layoutY="250.0" prefHeight="150.0" prefWidth="146.0" />
-      <BarChart fx:id="BarChart" layoutX="32.0" layoutY="230.0" prefHeight="164.0" prefWidth="228.0">
+      <ToggleButton fx:id="no" layoutX="373.0" layoutY="39.0" mnemonicParsing="false" onAction="#no" opacity="0.0" prefHeight="30.0" prefWidth="49.0" />
+      <ToggleButton fx:id="yes" layoutX="611.0" layoutY="48.0" mnemonicParsing="false" onAction="#yes" opacity="0.0" prefHeight="30.0" prefWidth="56.0" />
+      <Label fx:id="notext" layoutX="403.0" layoutY="79.0" />
+      <Label fx:id="yestext" layoutX="625.0" layoutY="79.0" />
+      <Label fx:id="review" layoutX="13.0" layoutY="9.0" prefHeight="17.0" prefWidth="505.0" textFill="#00cd29">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Label>
+      <AreaChart fx:id="LineChart1" layoutX="550.0" layoutY="143.0" prefHeight="394.0" prefWidth="545.0">
         <xAxis>
           <CategoryAxis side="BOTTOM" fx:id="x" />
         </xAxis>
         <yAxis>
           <NumberAxis fx:id="y" side="LEFT" />
         </yAxis>
-      </BarChart>
-      <LineChart fx:id="LineChart" layoutX="342.0" layoutY="15.0" prefHeight="150.0" prefWidth="252.0">
+      </AreaChart>
+      <Label layoutX="135.0" layoutY="112.0" prefHeight="17.0" prefWidth="232.0" text="Statistique des Likes" textFill="#1e76e3">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="709.0" layoutY="116.0" prefHeight="17.0" prefWidth="232.0" text="Statistique des dislikes" textFill="#134179">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="18.0" />
+         </font>
+      </Label>
+      <LineChart fx:id="LineChart" layoutX="28.0" layoutY="163.0">
         <xAxis>
-          <CategoryAxis side="BOTTOM" />
+          <CategoryAxis fx:id="X" side="BOTTOM" />
         </xAxis>
         <yAxis>
-          <NumberAxis side="LEFT" />
+          <NumberAxis fx:id="Y" side="LEFT" />
         </yAxis>
       </LineChart>
-      <BarChart fx:id="BarChart1" layoutX="351.0" layoutY="230.0" prefHeight="156.0" prefWidth="171.0">
-         <xAxis>
-            <CategoryAxis side="BOTTOM" fx:id="x1" />
-         </xAxis>
-         <yAxis>
-            <NumberAxis fx:id="y1" side="LEFT" />
-         </yAxis>
-      </BarChart>
-      <Label fx:id="notext" layoutX="43.0" layoutY="132.0" />
-      <Label fx:id="yestext" layoutX="265.0" layoutY="132.0" />
-      <Label fx:id="review" layoutX="23.0" layoutY="165.0" prefHeight="17.0" prefWidth="505.0" />
    </children>
 </AnchorPane>

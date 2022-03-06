@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.SplitMenuButton?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="444.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.RecController">
+   <children>
+      <Label layoutX="31.0" layoutY="14.0" prefHeight="12.0" prefWidth="481.0" text="                                     Reclamation">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Button fx:id="Valider" layoutX="406.0" layoutY="396.0" mnemonicParsing="false" onAction="#Valider" prefHeight="30.0" prefWidth="83.0" text="Envoyer" />
+      <Label layoutX="40.0" layoutY="64.0" prefHeight="25.0" prefWidth="536.0" text="Cher client pour passer une reclamation vous devez remplir ce formulaire :" textFill="RED" />
+      <SplitMenuButton fx:id="Categorie" alignment="BOTTOM_RIGHT" contentDisplay="TOP" layoutX="104.0" layoutY="180.0" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" prefHeight="25.0" prefWidth="170.0" text="     Catégorie" textFill="#867d7d">
+        <items>
+          <MenuItem fx:id="Boutique" mnemonicParsing="false" onAction="#Boutique" onMenuValidation="#Boutique" text="       Boutique" />
+          <MenuItem fx:id="Coach" mnemonicParsing="false" onAction="#Coach" onMenuValidation="#Coach" text="      Coach" />
+            <MenuItem fx:id="Compte" mnemonicParsing="false" onAction="#Compte" onMenuValidation="#Compte" text="      Compte" />
+        </items>
+      </SplitMenuButton>
+      <ImageView fitHeight="17.0" fitWidth="12.0" layoutX="250.0" layoutY="186.0">
+         <image>
+            <Image url="@../Images/menu%20(1).png" />
+         </image>
+      </ImageView>
+      <TextField fx:id="Email" layoutX="106.0" layoutY="111.0" prefHeight="30.0" prefWidth="311.0" promptText="Email" />
+      <ImageView fitHeight="30.0" fitWidth="33.0" layoutX="384.0" layoutY="110.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Images/gmail.png" />
+         </image>
+      </ImageView>
+      <TextArea fx:id="Contenu" layoutX="108.0" layoutY="237.0" prefHeight="147.0" prefWidth="321.0" promptText="Votre reclamation ..." />
+      <ImageView fitHeight="30.0" fitWidth="33.0" layoutX="393.0" layoutY="350.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Images/lecriture.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>
