@@ -21,6 +21,7 @@ import java.sql.Connection;
 import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -35,6 +36,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableRow;
@@ -95,6 +97,9 @@ public class ServiceController implements Initializable {
     private Button supp;
     @FXML
     private TextField tfcher;
+    private volatile boolean stop = false ;
+    @FXML
+    private Label timenow;
     
     @FXML
     private void handleajoutButtonAction(ActionEvent event){
@@ -447,6 +452,28 @@ public class ServiceController implements Initializable {
               }
           });
       }
+    //  private void Timenow(){
+          //Thread thread = new Thread (()->{
+                //  SimpleDateFormat sdf = new SimpleDateFormat("hh:mm:ss");
+                 // while (!stop){
+                   //   try{
+                       //   Thread.sleep(1000);
+                          
+                     // }catch(Exception e){
+                        //  System.out.println(e);
+                          
+                     // }
+                      
+                    //  final String timenow = sdf.format(new Date());
+                    //  Platform.runLater(()->{
+                       //   time.setText(timenow);
+                    //  });
+               //   }
+          
+    //  });
+       //   thread.start();
+//}
+      
         
         }
 

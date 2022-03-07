@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane id="AnchorPane" onMouseClicked="#handleMouseActionn" prefHeight="454.0" prefWidth="1251.0" style="-fx-background-color: #c5cae9;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.ServiceController">
+<AnchorPane id="AnchorPane" onMouseClicked="#handleMouseActionn" prefHeight="454.0" prefWidth="1543.0" style="-fx-background-color: #c5cae9;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.ServiceController">
    <children>
       <VBox layoutX="6.0" prefHeight="310.0" prefWidth="122.0">
          <children>
@@ -56,7 +56,7 @@
                </image>
             </ImageView>
          </graphic></Button>
-      <TableView fx:id="tableview2" layoutX="264.0" layoutY="8.0" onMouseClicked="#handleMouseActionn" prefHeight="354.0" prefWidth="853.0" style="-fx-background-color: #c5cae9;">
+      <TableView fx:id="tableview2" layoutX="264.0" layoutY="8.0" onMouseClicked="#handleMouseActionn" prefHeight="354.0" prefWidth="953.0" style="-fx-background-color: #c5cae9;">
         <columns>
           <TableColumn fx:id="id1" prefWidth="94.0" text="Service_Id" />
           <TableColumn fx:id="ref2" prefWidth="92.0" text="Ref_S" />
@@ -79,5 +79,6 @@
             </ImageView>
          </graphic>
       </Button>
+      <Label fx:id="timenow" layoutX="103.0" layoutY="412.0" prefHeight="17.0" prefWidth="103.0" text="Label" />
    </children>
 </AnchorPane>

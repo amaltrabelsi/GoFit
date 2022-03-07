@@ -294,12 +294,13 @@ public class ReservationController implements Initializable {
      executeQuery(query);
      
        if(id.getText().isEmpty()){
+         
          alert.setTitle("Informartion Dialog");
          alert.setHeaderText(null);
          alert.setContentText("veuillez insérer l'identifiant du Reservation !");
          alert.show();
      }
-    else  if(dd.getText().isEmpty()){
+    else if (dd.getText().isEmpty()){
           alert.setTitle("Informartion Dialog");
          alert.setHeaderText(null);
          alert.setContentText("veuillez insérer la date de début du Reservation !");
