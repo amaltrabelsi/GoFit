@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package GUI;
+import java.security.MessageDigest;
 import java.net.URL;
 import java.sql.Connection;
 import java.util.ResourceBundle;
@@ -19,6 +20,10 @@ import utils.MyDB;
 import entities.Utilisateur;
 import java.io.IOException;
 import java.net.MalformedURLException;
+import java.security.NoSuchAlgorithmException;
+import java.util.Base64;
+import java.util.Base64.Encoder;
+import java.util.Properties;
 import javafx.event.Event;
 import javafx.scene.control.MenuItem;
 import services.ServiceUtilisateur;
@@ -32,6 +37,15 @@ import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
+import javax.swing.JOptionPane;
 
 
 
@@ -87,8 +101,6 @@ public class InscriptionController implements Initializable {
     private Label generatedString;
     @FXML
     private TextField text;
-    @FXML
-    private Label invalid1;
     String C ;
     @FXML
     private AnchorPane inscr;
@@ -96,8 +108,6 @@ public class InscriptionController implements Initializable {
    
     @FXML
     private TextField num;
-    @FXML
-    private AnchorPane inscr1;
     @FXML
     private Label labnumero;
    
@@ -169,6 +179,13 @@ public class InscriptionController implements Initializable {
     private MenuItem Tunis;
     @FXML
     private MenuItem Zaghouan;
+    @FXML
+    private VBox validation;
+    @FXML
+    private VBox pageinscription;
+    @FXML
+    private Button terminer;
+   
       /**
      * Initializes the controller class.
      * @param url
@@ -177,7 +194,8 @@ public class InscriptionController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
        
-        
+        pageinscription.setVisible(true);
+        validation.setVisible(false);
         // TODO
      
         int leftLimit = 97; // letter 'a'
@@ -197,8 +215,7 @@ public class InscriptionController implements Initializable {
              
     @FXML
     private void inscription(ActionEvent event) throws MalformedURLException {
-            
-    if (Email.getText().isEmpty() == false
+                if (Email.getText().isEmpty() == false
                 && Nom.getText().isEmpty() == false  
                 && Role.getText().isEmpty() == false && Prenom.getText().isEmpty() == false
                 && Region.getText().isEmpty() == false && Sexe.getText().isEmpty() == false  
@@ -207,61 +224,43 @@ public class InscriptionController implements Initializable {
                 && Cmdp.getText().isEmpty() == false && text.getText().isEmpty() == false
                 && num.getText().isEmpty() == false) {
       
-           if  (Nom.getText() == Prenom.getText() ){
+           if  (Nom.getText().equals(Prenom.getText())){
                  invalid.setText("Nom et prenom doivent être différents "); }   
-       else if (verifemail(Email.getText())== false)
+           else if (verifemail(Email.getText())== false)
         {
             invalid.setText("Cette Email est invalid ");
-        } else if (mdp.getText().length()<8 ) {
+        }  else if (mdp.getText().length()<8 ) {
             invalid.setText("Le mot de passe ne doit pas étre inferieur à 8 caractere");}
         
         
-           else if((mdp.getText() == (Cmdp.getText())) ) {
+        else if((mdp.getText().equals(Cmdp.getText()))==false ) {
            
      invalid.setText("Les mots de passe ne sont pas identiques");}
          
-         else if ((text.getText() == C)){
-          invalid1.setText("Les Deux chaines ne sont pas identiques!");
-         } else if ((num.getText().length()!=8) && ( num.getText().substring(1, 2) !="90") &&(num.getText().substring(1, 2)!="91") &&(num.getText().substring(1, 2)!="92") &&(num.getText().substring(1, 2)!="93") &&(num.getText().substring(1, 2)!="94") &&(num.getText().substring(1, 2)!="95")&&(num.getText().substring(1, 2)!="96") &&(num.getText().substring(1, 2)!="97") &&(num.getText().substring(1, 2)!="98") &&(num.getText().substring(1, 2)!="99")
+           else if ((text.getText().equals(C)==false)){
+          invalid.setText("Les Deux chaines ne sont pas identiques!");
+         }  else if ((num.getText().length()!=8) && ( num.getText().substring(1, 2) !="90") &&(num.getText().substring(1, 2)!="91") &&(num.getText().substring(1, 2)!="92") &&(num.getText().substring(1, 2)!="93") &&(num.getText().substring(1, 2)!="94") &&(num.getText().substring(1, 2)!="95")&&(num.getText().substring(1, 2)!="96") &&(num.getText().substring(1, 2)!="97") &&(num.getText().substring(1, 2)!="98") &&(num.getText().substring(1, 2)!="99")
                    &&(num.getText().substring(1, 2)!="40")&&(num.getText().substring(1, 2)!="41")&&(num.getText().substring(1, 2)!="42")&&(num.getText().substring(1, 2)!="44")
                    &&(num.getText().substring(1, 2)!="50")&&(num.getText().substring(1, 2)!="51") && (num.getText().substring(1, 2)!="52") &&(num.getText().substring(1, 2)!="53") &&(num.getText().substring(1, 2)!="54") &&(num.getText().substring(1, 2)!="55")  &&(num.getText().substring(1, 2)!="58")  
                    &&(num.getText().substring(1, 2)!="29") &&(num.getText().substring(1, 2)!="28") &&(num.getText().substring(1, 2)!="27")&&(num.getText().substring(1, 2)!="26") &&(num.getText().substring(1, 2)!="25") &&(num.getText().substring(1, 2)!="24") &&(num.getText().substring(1, 2)!="23") &&(num.getText().substring(1, 2)!="22")&&(num.getText().substring(1, 2)!="21")&&(num.getText().substring(1, 2)!="20") )
            {
               invalid.setText("Numéro est invalide");
-           }
-         else {
-         
-             invalid.setText("");
-         cnx = MyDB.getInstance().getConnection();
-        Utilisateur u = new Utilisateur();
-        u.setEmail(Email.getText());
-        u.setNom(Nom.getText());
-        u.setPrenom(Prenom.getText());
-        u.setRole(Role.getText());
-        // System.out.println(Role.getText());
-        u.setRegion(Region.getText());
-        u.setSexe(Sexe.getText() );
-        u.setAdresse(Adresse.getText());
-        u.setDate_de_naissance(String.valueOf(date.getValue()));
-        u.setMdp(mdp.getText());
-        u.setNumero(num.getText());
-        u.setReponse(Reponse.getText());
-        u.setQuestion(question.getText());
+           } else {
         
-        uti.ajout(u);
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("../GUI/Connexion.fxml"));
-            Parent root = loader.load();
-            inscription.getScene().setRoot(root);
-           } catch (IOException ex) {
-            Logger.getLogger(ConnexionController.class.getName()).log(Level.SEVERE, null, ex);
-        }}}
-    else {
+             mailvalidation ();
+             pageinscription.setVisible(false);
+        validation.setVisible(true); }
+                }else {
        Alert alert = new Alert (Alert.AlertType.ERROR);
                  alert.setContentText("Remplir Tous les cases s'il vous plaît ");
                  alert.show();
           
-                 }}
+                 }
+       
+        
+      
+            
+   }
 
    
     
@@ -656,10 +655,111 @@ private String getpass(){
         Region.setText("Zaghouan");
     }
 
+   
+   public String cryptage(String pass) 
+   {
+        try {
+            MessageDigest msg = MessageDigest.getInstance("MD5");
+       msg.update(pass.getBytes());
+       byte [] rs = msg.digest();
+       StringBuilder sb = new  StringBuilder();
+       for (byte b :rs)
+       {
+           sb.append(String.format("%02x", b));
+       }
+       return sb.toString();
+        } catch (NoSuchAlgorithmException ex) {
+            Logger.getLogger(InscriptionController.class.getName()).log(Level.SEVERE, null, ex);
+        
+        }return "" ; 
+   }
+
     @FXML
-    private void Region(ActionEvent event) {
-    }
-   
-   
-}
+    private void terminer(ActionEvent event) {
+        if (String.valueOf(codevalidation())!=Code.getText()) {
+           
+         invalid.setText("");
+         cnx = MyDB.getInstance().getConnection();
+        Utilisateur u = new Utilisateur();
+        u.setEmail(Email.getText());
+        u.setNom(Nom.getText());
+        u.setPrenom(Prenom.getText());
+        u.setRole(Role.getText());
+        // System.out.println(Role.getText());
+        u.setRegion(Region.getText());
+        u.setSexe(Sexe.getText() );
+        u.setAdresse(Adresse.getText());
+        u.setDate_de_naissance(String.valueOf(date.getValue()));
+        u.setMdp(cryptage(mdp.getText()));
+        u.setNumero(num.getText());
+        u.setReponse(Reponse.getText());
+        u.setQuestion(question.getText());
+        
+        uti.ajout(u);
+         JOptionPane.showMessageDialog(null, "Bienvenue Chez GoFit "+Nom.getText()+" "+Prenom.getText());
+           try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../GUI/Connexion.fxml"));
+            Parent root = loader.load();
+            terminer.getScene().setRoot(root);
+           } catch (IOException ex) {
+            Logger.getLogger(RestController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     
+        }else {
+            Alert alert = new Alert (Alert.AlertType.ERROR);
+                 alert.setContentText("Votre code est invalid ");
+                 alert.show();
+        }
+    }
+   public int codevalidation(){
+       int borneInf =1000 ;
+       int borneSup = 9999;
+   Random random = new Random();
+   int nb;
+   nb = borneInf+random.nextInt(borneSup-borneInf);
+   System.out.println(""+nb);
+   return nb;
+}
+public void mailvalidation () {
+
+        final String username = "amaltr21@gmail.com";
+        final String password = "526364475263644752636447";
+
+        Properties prop = new Properties();
+		prop.put("mail.smtp.host", "smtp.gmail.com");
+                prop.put("mail.smtp.ssl.trust", "smtp.gmail.com");
+
+        prop.put("mail.smtp.port", "587");
+        prop.put("mail.smtp.auth", "true");
+        prop.put("mail.smtp.starttls.enable", "true"); //TLS
+        
+        Session session = Session.getInstance(prop,
+                new javax.mail.Authenticator() {
+                    @Override
+                    protected PasswordAuthentication getPasswordAuthentication() {
+                        return new PasswordAuthentication(username, password);
+                    }
+                });
+
+        try {
+
+            Message message = new MimeMessage(session);
+            message.setFrom(new InternetAddress("amaltr21@gmail.com"));
+            message.setRecipients(
+                    Message.RecipientType.TO,
+                    InternetAddress.parse(Email.getText())
+            );
+            message.setSubject("Code de validation de votre email");
+            message.setText("Bonjour"+Nom.getText()+" "+Prenom.getText()+""
+                    + "Votre code de validation : "+codevalidation());
+
+            Transport.send(message);
+
+            System.out.println("Done");
+
+        } catch (MessagingException e) {
+            e.printStackTrace();
+        }
+    }
+
+}   

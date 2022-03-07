@@ -4,18 +4,19 @@
  * and open the template in the editor.
  */
 package GUI;
+
+
 import entities.Utilisateur;
-import services.ServiceUtilisateur;
-import entities.Utilisateur;
-import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Base64;
+import java.util.Base64.Decoder;
 import java.util.Random;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -26,7 +27,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
@@ -36,8 +36,6 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.SplitMenuButton;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.util.Duration;
 import services.ServiceUtilisateur;
@@ -45,7 +43,6 @@ import tray.animations.AnimationType;
 import utils.MyDB;
 import tray.notification.NotificationType;
 import tray.notification.TrayNotification;
-import services.IService;
 
 /**
  * FXML Controller class
@@ -67,8 +64,6 @@ public class ConnexionController implements Initializable {
     @FXML
     private PasswordField mdp;
     @FXML
-    private ImageView lockImageView;
-    @FXML
     private Label invalid;
     @FXML
     private SplitMenuButton Role;
@@ -80,24 +75,6 @@ public class ConnexionController implements Initializable {
     private MenuItem coach;
     @FXML
     private MenuItem vendeur;
-    @FXML
-    private ImageView brandingImageView1;
-    @FXML
-    private AnchorPane rec3;
-    @FXML
-    private AnchorPane rec2;
-    @FXML
-    private TextField num;
-    @FXML
-    private Button envoyer;
-    @FXML
-    private TextField nvmdp;
-    @FXML
-    private TextField cnvmdp;
-    @FXML
-    private Button valide;
-    @FXML
-    private ImageView brandingImageView11;
     
     @FXML
     private Button connexionn;
@@ -117,8 +94,6 @@ public class ConnexionController implements Initializable {
     private Button event;
     @FXML
     private Label email1;
-    @FXML
-    private Label labelnom;
     @FXML
     private Label labelprenom;
     private AnchorPane fenetrecon;
@@ -149,50 +124,6 @@ public class ConnexionController implements Initializable {
     @FXML
     private Button Modifier;
     @FXML
-    private AnchorPane rec31;
-    @FXML
-    private Button valide1;
-    @FXML
-    private TextField nvmdp1;
-    @FXML
-    private TextField cnvmdp1;
-    @FXML
-    private AnchorPane rec21;
-    @FXML
-    private ImageView brandingImageView12;
-    @FXML
-    private TextField num1;
-    @FXML
-    private Button envoyer1;
-    @FXML
-    private AnchorPane fenetreconnexion1;
-    @FXML
-    private ImageView brandingImageView111;
-    @FXML
-    private TextField email2;
-    @FXML
-    private Button connexionn1;
-    @FXML
-    private Hyperlink mdpoublié1;
-    @FXML
-    private Hyperlink inscription1;
-    @FXML
-    private PasswordField mdp1;
-    @FXML
-    private ImageView lockImageView1;
-    @FXML
-    private Label invalid1;
-    @FXML
-    private SplitMenuButton Role1;
-    @FXML
-    private MenuItem admin1;
-    @FXML
-    private MenuItem client1;
-    @FXML
-    private MenuItem coach1;
-    @FXML
-    private MenuItem vendeur1;
-    @FXML
     private TextField regionmodif;
     @FXML
     private TextField adressemodif;
@@ -206,9 +137,12 @@ public class ConnexionController implements Initializable {
     private TextField reponsemodif;
     @FXML
     private TextField sexemodif;
+    private AnchorPane methode;
 
     /**
      * Initializes the controller class.
+     * @param url
+     * @param rb
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -222,7 +156,7 @@ public class ConnexionController implements Initializable {
     
     
     private void connexion(ActionEvent event) throws SQLException {
-        if (email.getText().isEmpty() == false && mdp.getText().isEmpty() == false  && Role.getText().isEmpty() == false)
+        if (email.getText().isEmpty() == false && cryptage(mdp.getText()).isEmpty() == false  && Role.getText().isEmpty() == false)
         {
              cnx = MyDB.getInstance().getConnection();
              String r = Role.getText() ;
@@ -230,7 +164,7 @@ public class ConnexionController implements Initializable {
              
              
          try {
-         String req = "select * from utilisateur where Email = '" + email.getText()+ "' AND  mdp ='"+ mdp.getText()+ "' and Role = '"+ Role.getText()+ "'" ; 
+         String req = "select * from utilisateur where Email = '" + email.getText()+ "' AND  mdp ='"+ cryptage(mdp.getText())+ "' and Role = '"+ Role.getText()+ "'" ; 
             Statement st = cnx.createStatement();
             ResultSet rs = st.executeQuery(req); 
              if (!rs.isBeforeFirst()){
@@ -251,7 +185,7 @@ public class ConnexionController implements Initializable {
         
                
         } catch (IOException ex) {
-            Logger.getLogger(AdminController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ConnexionController.class.getName()).log(Level.SEVERE, null, ex);
         }; break;
         
                      case "client": 
@@ -263,10 +197,9 @@ public class ConnexionController implements Initializable {
             Statement p = cnx.createStatement();
             ResultSet q = p.executeQuery(m);
             q.next();
-               
-                labelprenom.setText(q.getString(1));
-                System.out.println(q.getString(1));
-            
+            labelprenom.setText(q.getString(1));
+            System.out.println(q.getString(1));
+          
            ; break;
                       case "coach": 
                       try {
@@ -275,7 +208,7 @@ public class ConnexionController implements Initializable {
             connexion.getScene().setRoot(root);
              notification();
                  } catch (IOException ex) {
-            Logger.getLogger(CoachController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ConnexionController.class.getName()).log(Level.SEVERE, null, ex);
         }
                 ; break;     
                       case "vendeur": 
@@ -285,7 +218,7 @@ public class ConnexionController implements Initializable {
             connexion.getScene().setRoot(root);
              notification();
            } catch (IOException ex) {
-            Logger.getLogger(VendeurController.class.getName()).log(Level.SEVERE, null, ex);}
+            Logger.getLogger(ConnexionController.class.getName()).log(Level.SEVERE, null, ex);}
              ; break;}}} 
          catch (Exception e) {
              e.printStackTrace();
@@ -303,13 +236,14 @@ public class ConnexionController implements Initializable {
 
     @FXML
     private void mdpoublié(ActionEvent event) {
-          try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("../GUI/Rest.fxml"));
+         try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../GUI/Methode.fxml"));
             Parent root = loader.load();
-            mdpoublié.getScene().setRoot(root);
+            inscription.getScene().setRoot(root);
            } catch (IOException ex) {
             Logger.getLogger(ConnexionController.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
         
     }
 
@@ -322,13 +256,6 @@ public class ConnexionController implements Initializable {
            } catch (IOException ex) {
             Logger.getLogger(ConnexionController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-
- 
-
-  
-   
-
     }
 
     @FXML
@@ -387,13 +314,6 @@ public class ConnexionController implements Initializable {
 
 
 
-    @FXML
-    private void envoyer(ActionEvent event) {
-    }
-
-    @FXML
-    private void valide(ActionEvent event) {
-    }
     
    public void notification () throws SQLException
    {
@@ -468,11 +388,12 @@ public class ConnexionController implements Initializable {
     private void Modifier(ActionEvent event)  throws SQLException {
           ServiceUtilisateur r = new ServiceUtilisateur () ;
          Utilisateur rec = new Utilisateur ();
-          String m = "select Utilisateur_Id , Urilisateur_Id from utilisateur where Email = '" + email.getText()+ "' " ; 
+          String m = "select Utilisateur_Id , Utilisateur_Id from utilisateur where Email = '" + email.getText()+ "' " ; 
             Statement p = cnx.createStatement();
             ResultSet q = p.executeQuery(m);
             if (q.next()){
                int str = q.getInt("Utilisateur_Id");
+              
          rec.setUtilisateur_Id(str);
          rec.setAdresse(adressemodif.getText());
          rec.setRegion(regionmodif.getText());
@@ -481,13 +402,56 @@ public class ConnexionController implements Initializable {
          rec.setSexe(sexemodif.getText());
          rec.setNumero(nummodif.getText());
          rec.setDate_de_naissance(String.valueOf(datemodif.getValue()));
-         rec.setMdp(mdpmodif.getText());
+         rec.setMdp(cryptage(mdpmodif.getText()));
          rec.setNom(nommodif.getText());
-         rec.setPrenom(prenommodif.getText());}
+         rec.setPrenom(prenommodif.getText());
+            rec.setReponse(reponsemodif.getText());
+            rec.setQuestion(questionmodif.getText());}
          
          
          r.modifier(rec);
+         
     
     }
+
+
+  public void notification2 () throws SQLException
+   {
+           cnx = MyDB.getInstance().getConnection(); 
+        Statement a = cnx.createStatement();
+          String b = "select CONCAT (Nom ,' ', Prenom)  from utilisateur where Email = '" + email.getText()+ "' " ; 
+        ResultSet c = a.executeQuery(b);
+        if (c.next())
+        {
+           String  y = c.getString(1);
+            System.out.println(y);}
+                 TrayNotification tra = new TrayNotification();
+        AnimationType typ = AnimationType.POPUP;
+        tra.setAnimationType (typ);
+        tra.setTitle("Bienvenue");
+                 
+        tra.setMessage("Votre modification est prise en considération   "+c.getString("Nom"));
+        tra.setNotificationType(NotificationType.SUCCESS);
+        tra.showAndDismiss(Duration.millis(3000));
+   }
+ public String cryptage(String pass) 
+   {
+        try {
+            MessageDigest msg = MessageDigest.getInstance("MD5");
+       msg.update(pass.getBytes());
+       byte [] rs = msg.digest();
+       StringBuilder sb = new  StringBuilder();
+       for (byte b :rs)
+       {
+           sb.append(String.format("%02x", b));
+       }
+       return sb.toString();
+        } catch (NoSuchAlgorithmException ex) {
+            Logger.getLogger(InscriptionController.class.getName()).log(Level.SEVERE, null, ex);
+        
+        }return "" ; 
+   }
+
+ 
 
 }

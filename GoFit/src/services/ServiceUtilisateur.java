@@ -58,7 +58,7 @@ Connection cnx;
             ps.setString(10, t.getNumero());
              ps.setString(11, t.getReponse());
               ps.setString(12, t.getQuestion());
-            ps.setInt(1, t.getUtilisateur_Id());
+            ps.setInt(13, t.getUtilisateur_Id());
             ps.executeUpdate();
             
         } catch (SQLException ex) {
