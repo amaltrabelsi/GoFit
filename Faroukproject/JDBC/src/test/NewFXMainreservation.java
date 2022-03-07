@@ -26,7 +26,7 @@ public class NewFXMainreservation extends Application {
     @Override
     public void start(Stage primaryStage) {
                try {
-            Parent root = FXMLLoader.load(getClass().getResource("../GUI/Reservation.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("../GUI/Service.fxml"));
             Scene scene = new Scene(root);
             primaryStage.setTitle("GoFit");
             primaryStage.setScene(scene);

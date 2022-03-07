@@ -5,14 +5,26 @@
  */
 package GUI;
 
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.pdf.PdfWriter;
 import entities.reservation;
 import entities.service;
+import java.awt.Desktop;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -22,6 +34,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
@@ -29,6 +43,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 import javafx.scene.input.MouseEvent;
+import javafx.util.Callback;
 import utils.MyDB;
 
 /**
@@ -194,7 +209,93 @@ public class ServiceController implements Initializable {
                 
                 }
         });
+         /**********************************pdf**************************/
+         TableColumn<service, Void> gotobtn = new TableColumn("Action");
+          Callback<TableColumn<service, Void>, TableCell<service, Void>> cellFactory
+           = new Callback<TableColumn<service, Void>, TableCell<service, Void>>() {
+          
+            @Override
+            public TableCell<service, Void> call(final TableColumn<service, Void> param) {
+                final TableCell<service, Void> cell = new TableCell<service, Void>() {
+
+                    private final Button btn = new Button("Pdf");
+ 
+                    {
+                        btn.setOnAction((ActionEvent event) -> {
+                            
+                            
+                           
+                                service data = getTableView().getItems().get(getIndex());
+                                int a=data.getService_Id();
+                                System.out.println(a);
+                                service u=new service();
+                                String référence=data.getRef_S();
+                                String typeservice=data.getType_S();
+                                String nomservice=data.getNom_Service();
+                                String description=data.getDescription();
+                                String disponibilité=data.getDisponibilite();
+                                String horaire=data.getHoraire();
+                                String catégorie=data.getCategorie();
+                                
+                                
+                                
+                               
+                                
+                                Document doc =new Document();
+                                
+                                 try {
+                                String file_name="C:\\Users\\farou\\Downloads\\Faroukproject\\JDBC\\src\\GUI//service.pdf";
+                                PdfWriter.getInstance(doc, new FileOutputStream(file_name));
+                                doc.open();
+                                doc.add(new Paragraph("service: "));
+                               
+                                doc.add(new Paragraph("Référence: '"+référence+"'"));
+                                doc.add(new Paragraph("Type du service: '"+typeservice+"'"));
+                                doc.add(new Paragraph("Nom du service: '"+nomservice+"'"));
+                                doc.add(new Paragraph("Description: '"+description+"'"));
+                                doc.add(new Paragraph("Disponibilité: '"+disponibilité+"'"));
+                                doc.add(new Paragraph("Horaire du su service: '"+horaire+"'"));
+                                doc.add(new Paragraph("Catégoriede service: '"+catégorie+"'"));
+                                
+                                
+                                doc.close();
+                                Desktop.getDesktop().open(new File(file_name));
+                            } catch (FileNotFoundException ex) {
+                                Logger.getLogger(ReservationController.class.getName()).log(Level.SEVERE, null, ex);
+                            } catch (DocumentException ex) {
+                                Logger.getLogger(ReservationController.class.getName()).log(Level.SEVERE, null, ex);
+                            } catch (IOException ex) {
+                                Logger.getLogger(ReservationController.class.getName()).log(Level.SEVERE, null, ex);
+                            }
+                            
+                           
+                               
+                            
+         
+                            
+                        });
+                       
+                    }
+
+                    @Override
+                    public void updateItem(Void item, boolean empty) {
+                        super.updateItem(item, empty);
+                        if (empty) {
+                            setGraphic(null);
+                        } else {
+                            setGraphic(btn);
+                        }
+                    }
+                };
+                return cell;
+            }
+        };
+
+       gotobtn.setCellFactory(cellFactory);
+
+        tableview2.getColumns().add(gotobtn);
  }
+ 
             
         
 
@@ -206,6 +307,13 @@ public class ServiceController implements Initializable {
      String query = "INSERT INTO service VALUES ('" + Sid.getText()+ "','" +Sref.getText() +"','" +Stype.getText() + "','"
              +Snom.getText() + "','" + Sdes.getText()+ "','" + Sdispo.getText() + "','" + Shor.getText() +"','" + Scate.getText()+"')";
      executeQuery(query);
+     
+     
+     
+      alert.setTitle("Inforamtion Dialog");
+     alert.setHeaderText(null);
+     alert.setContentText("SERVICE ajouté avec succes !");
+     alert.show();
      
      
      if(Sid.getText().isEmpty()){
@@ -259,11 +367,7 @@ public class ServiceController implements Initializable {
      }
      
      
-    // alert.setTitle("Inforamtion Dialog");
-    // alert.setHeaderText(null);
-    // alert.setContentText("SERVICE ajouté avec succes !");
-    // alert.show();
-     
+    
      
      
      
@@ -332,6 +436,17 @@ public class ServiceController implements Initializable {
         
     
     }
+     @FXML
+      private void quitterclick(){
+          Alert alert = new Alert (Alert.AlertType.CONFIRMATION,"Etes  vous sur de fermer ?");
+          alert.showAndWait().ifPresent(response-> {
+              if (response==ButtonType.OK)
+              {
+                  System.out.println("en train de fermer ...");
+                  Platform.exit();
+              }
+          });
+      }
         
         }
 

@@ -5,6 +5,10 @@
  */
 package GUI;
 
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.pdf.PdfWriter;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -17,18 +21,29 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import entities.reservation;
 import entities.service;
+import java.awt.Desktop;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import static java.time.Clock.system;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableRow;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.util.Callback;
 import utils.MyDB;
 
 /**
@@ -137,6 +152,7 @@ public class ReservationController implements Initializable {
     
      tv.setItems(list);
      
+     
       FilteredList<reservation> filteredData = new FilteredList<>(list, b -> true);
 		
 		trr.textProperty().addListener((observable, oldValue, newValue) -> {
@@ -183,6 +199,84 @@ public class ReservationController implements Initializable {
                 
                 }
         });
+        /**********************************pdf**************************/
+         TableColumn<reservation, Void> gotobtn = new TableColumn("Action");
+          Callback<TableColumn<reservation, Void>, TableCell<reservation, Void>> cellFactory
+           = new Callback<TableColumn<reservation, Void>, TableCell<reservation, Void>>() {
+          
+            @Override
+            public TableCell<reservation, Void> call(final TableColumn<reservation, Void> param) {
+                final TableCell<reservation, Void> cell = new TableCell<reservation, Void>() {
+
+                    private final Button btn = new Button("Pdf");
+ 
+                    {
+                        btn.setOnAction((ActionEvent event) -> {
+                            
+                            
+                           
+                                reservation data = getTableView().getItems().get(getIndex());
+                                int a=data.getReservation_Id();
+                                System.out.println(a);
+                                reservation u=new reservation();
+                                String duree=data.getDuree();
+                                String info=data.getInfos_Supp();
+                                Date dated=data.getDate_Debut();
+                                Date datef=data.getDate_Fin();
+                                
+                                
+                               
+                                
+                                Document doc =new Document();
+                                
+                                 try {
+                                String file_name="C:\\Users\\farou\\Downloads\\Faroukproject\\JDBC\\src\\GUI//reservation.pdf";
+                                PdfWriter.getInstance(doc, new FileOutputStream(file_name));
+                                doc.open();
+                                doc.add(new Paragraph("reservation: "));
+                               
+                                doc.add(new Paragraph("infos supplémentaires: '"+info+"'"));
+                                doc.add(new Paragraph("durée: '"+duree+"'"));
+                                doc.add(new Paragraph("Date début: '"+dated+"'"));
+                                doc.add(new Paragraph("Date fin: '"+datef+"'"));
+                                
+                                
+                                doc.close();
+                                Desktop.getDesktop().open(new File(file_name));
+                            } catch (FileNotFoundException ex) {
+                                Logger.getLogger(ReservationController.class.getName()).log(Level.SEVERE, null, ex);
+                            } catch (DocumentException ex) {
+                                Logger.getLogger(ReservationController.class.getName()).log(Level.SEVERE, null, ex);
+                            } catch (IOException ex) {
+                                Logger.getLogger(ReservationController.class.getName()).log(Level.SEVERE, null, ex);
+                            }
+                            
+                           
+                               
+                            
+         
+                            
+                        });
+                       
+                    }
+
+                    @Override
+                    public void updateItem(Void item, boolean empty) {
+                        super.updateItem(item, empty);
+                        if (empty) {
+                            setGraphic(null);
+                        } else {
+                            setGraphic(btn);
+                        }
+                    }
+                };
+                return cell;
+            }
+        };
+
+       gotobtn.setCellFactory(cellFactory);
+
+        tv.getColumns().add(gotobtn);
  }
 
 
@@ -190,6 +284,13 @@ public class ReservationController implements Initializable {
      Alert alert = new Alert(Alert.AlertType.INFORMATION);
      String query = "INSERT INTO reservation VALUES ('" + id.getText()+ "','" +dd.getText() +"','" +df.getText() + "','"
              +du.getText() + "','" + is.getText()+"')";
+     
+     
+         alert.setTitle("Inforamtion Dialog");
+     alert.setHeaderText(null);
+     alert.setContentText("Reservation ajouté avec succes !");
+     alert.show();
+     
      executeQuery(query);
      
        if(id.getText().isEmpty()){
@@ -201,7 +302,7 @@ public class ReservationController implements Initializable {
     else  if(dd.getText().isEmpty()){
           alert.setTitle("Informartion Dialog");
          alert.setHeaderText(null);
-         alert.setContentText("veuillez insérer la date de début du service !");
+         alert.setContentText("veuillez insérer la date de début du Reservation !");
          alert.show();
          
      }
@@ -266,7 +367,21 @@ public class ReservationController implements Initializable {
        is.setText(reservation.getInfos_Supp());
         
     }
+    
+      @FXML
+      private void exitclick(){
+          Alert alert = new Alert (Alert.AlertType.CONFIRMATION,"Etes  vous sur de fermer ?");
+          alert.showAndWait().ifPresent(response-> {
+              if (response==ButtonType.OK)
+              {
+                  System.out.println("en train de fermer ...");
+                  Platform.exit();
+              }
+          });
+      }
+      
 }
+
 
 
 

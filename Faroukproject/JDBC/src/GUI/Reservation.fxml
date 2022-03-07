@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane id="AnchorPane" prefHeight="518.0" prefWidth="763.0" style="-fx-background-color: #c5cae9;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.ReservationController">
+<AnchorPane id="AnchorPane" onMouseClicked="#exitclick" prefHeight="518.0" prefWidth="763.0" style="-fx-background-color: #c5cae9;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.ReservationController">
    <children>
       <VBox prefHeight="361.0" prefWidth="111.0">
          <children>
@@ -61,5 +61,14 @@
          </graphic></Button>
       <Label layoutX="320.0" layoutY="343.0" prefHeight="17.0" prefWidth="66.0" text="Rechercher" />
       <TextField fx:id="trr" layoutX="386.0" layoutY="339.0" prefHeight="25.0" prefWidth="317.0" />
+      <Button layoutX="829.0" layoutY="389.0" mnemonicParsing="false" onMouseClicked="#exitclick" text="Quitter">
+         <graphic>
+            <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@logout-rounded-left.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
    </children>
 </AnchorPane>

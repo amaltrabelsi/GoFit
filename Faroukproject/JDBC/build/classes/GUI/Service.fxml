@@ -70,5 +70,14 @@
       </TableView>
       <Label layoutX="370.0" layoutY="371.0" prefHeight="17.0" prefWidth="75.0" text="Chercher" />
       <TextField fx:id="tfcher" layoutX="436.0" layoutY="367.0" prefHeight="25.0" prefWidth="358.0" />
+      <Button layoutX="1054.0" layoutY="380.0" mnemonicParsing="false" onMouseClicked="#quitterclick" text="Quitter">
+         <graphic>
+            <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@logout-rounded-left.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
    </children>
 </AnchorPane>
