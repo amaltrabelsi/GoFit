@@ -7,6 +7,8 @@ package GUI;
 
 import java.io.IOException;
 import java.net.URL;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -65,7 +67,7 @@ public class RestController implements Initializable {
         ResultSet rs = st.executeQuery(req);
         if (rs.next())
         {
-           st.executeUpdate("update utilisateur set mdp ='"+mdp.getText()+"' where Email = '"+email.getText()+"'");
+           st.executeUpdate("update utilisateur set mdp ='"+ cryptage(mdp.getText())+"' where Email = '"+email.getText()+"'");
            JOptionPane.showMessageDialog(null, "Votre nouveau mot de passe est validé vous allez "
                    + "automatiquement accéder à la page de  connexion!");
            try {
@@ -114,5 +116,23 @@ public class RestController implements Initializable {
         
         
     }
+     public String cryptage(String pass) 
+   {
+        try {
+            MessageDigest msg = MessageDigest.getInstance("MD5");
+       msg.update(pass.getBytes());
+       byte [] rs = msg.digest();
+       StringBuilder sb = new  StringBuilder();
+       for (byte b :rs)
+       {
+           sb.append(String.format("%02x", b));
+       }
+       return sb.toString();
+        } catch (NoSuchAlgorithmException ex) {
+            Logger.getLogger(InscriptionController.class.getName()).log(Level.SEVERE, null, ex);
+        
+        }return "" ; 
+   }
+
     
 }
