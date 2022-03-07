@@ -5,10 +5,12 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane id="AnchorPane" prefHeight="518.0" prefWidth="763.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.ReservationController">
+<AnchorPane id="AnchorPane" prefHeight="518.0" prefWidth="763.0" style="-fx-background-color: #c5cae9;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.ReservationController">
    <children>
       <VBox prefHeight="361.0" prefWidth="111.0">
          <children>
@@ -19,12 +21,11 @@
             <Label layoutX="10.0" layoutY="103.0" prefHeight="31.0" prefWidth="173.0" text="Infos_Supp" />
          </children>
       </VBox>
-      <TextField fx:id="id" layoutX="86.0" layoutY="2.0" prefHeight="25.0" prefWidth="120.0" />
-      <TextField fx:id="dd" layoutX="86.0" layoutY="34.0" prefHeight="25.0" prefWidth="120.0" />
-      <TextField fx:id="df" layoutX="86.0" layoutY="67.0" prefHeight="25.0" prefWidth="120.0" />
-      <TextField fx:id="du" layoutX="86.0" layoutY="99.0" prefHeight="25.0" prefWidth="120.0" />
-      <TextField fx:id="is" layoutX="86.0" layoutY="131.0" prefHeight="101.0" prefWidth="120.0" />
-      <TableView fx:id="tv" layoutX="226.0" layoutY="2.0" prefHeight="333.0" prefWidth="537.0">
+      <TextField fx:id="id" layoutX="86.0" layoutY="2.0" prefHeight="25.0" prefWidth="120.0" style="-fx-background-color: #bdbdbd;" />
+      <TextField fx:id="dd" layoutX="86.0" layoutY="34.0" prefHeight="25.0" prefWidth="120.0" style="-fx-background-color: #bdbdbd;" />
+      <TextField fx:id="df" layoutX="86.0" layoutY="67.0" prefHeight="25.0" prefWidth="120.0" style="-fx-background-color: #bdbdbd;" />
+      <TextField fx:id="du" layoutX="86.0" layoutY="99.0" prefHeight="25.0" prefWidth="120.0" style="-fx-background-color: #bdbdbd;" />
+      <TableView fx:id="tv" layoutX="226.0" layoutY="2.0" onMouseClicked="#handleMouseAction" prefHeight="333.0" prefWidth="537.0" style="-fx-background-color: #c5cae9;">
         <columns>
           <TableColumn fx:id="tvrI" prefWidth="117.0" text="Reservation_Id" />
           <TableColumn fx:id="tvdd" prefWidth="95.0" text="Date_Debut" />
@@ -33,8 +34,32 @@
             <TableColumn fx:id="tbis" prefWidth="118.0" text="Infos_Supp" />
         </columns>
       </TableView>
-      <Button fx:id="btnA" layoutX="86.0" layoutY="244.0" mnemonicParsing="false" onAction="#handleAddButtonAction" style="-fx-background-color: green;" text="Ajouter" />
-      <Button fx:id="btnM" layoutX="81.0" layoutY="339.0" mnemonicParsing="false" onAction="#handleModifyButtonAction" style="-fx-background-color: green;" text="Modifier " />
-      <Button fx:id="btnS" layoutX="155.0" layoutY="339.0" mnemonicParsing="false" onAction="#handledeleteButtonAction" style="-fx-background-color: green;" text="Supprimer" />
+      <TextField fx:id="is" layoutX="86.0" layoutY="131.0" prefHeight="101.0" prefWidth="120.0" style="-fx-background-color: #bdbdbd;" />
+      <Button fx:id="btnA" layoutX="86.0" layoutY="244.0" mnemonicParsing="false" onAction="#handleAddButtonAction" style="-fx-background-color: white;" text="Ajouter">
+         <graphic>
+            <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@add.png" />
+               </image>
+            </ImageView>
+         </graphic></Button>
+      <Button fx:id="btnM" layoutX="81.0" layoutY="339.0" mnemonicParsing="false" onAction="#handleModifyButtonAction" style="-fx-background-color: white;" text="Modifier ">
+         <graphic>
+            <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@edit-administrator.png" />
+               </image>
+            </ImageView>
+         </graphic></Button>
+      <Button fx:id="btnS" layoutX="176.0" layoutY="339.0" mnemonicParsing="false" onAction="#handledeleteButtonAction" style="-fx-background-color: white;" text="Supprimer">
+         <graphic>
+            <ImageView fitHeight="20.0" fitWidth="17.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@filled-trash_1.png" />
+               </image>
+            </ImageView>
+         </graphic></Button>
+      <Label layoutX="320.0" layoutY="343.0" prefHeight="17.0" prefWidth="66.0" text="Rechercher" />
+      <TextField fx:id="trr" layoutX="386.0" layoutY="339.0" prefHeight="25.0" prefWidth="317.0" />
    </children>
 </AnchorPane>

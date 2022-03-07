@@ -15,11 +15,15 @@ import java.sql.Statement;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -74,6 +78,8 @@ public class ServiceController implements Initializable {
     private Button modifier;
     @FXML
     private Button supp;
+    @FXML
+    private TextField tfcher;
     
     @FXML
     private void handleajoutButtonAction(ActionEvent event){
@@ -131,6 +137,7 @@ public class ServiceController implements Initializable {
      ObservableList<service> list =getserviceList(); 
      
      
+     
      id1.setCellValueFactory  (new PropertyValueFactory<service, Integer>("Service_Id"));
      ref2.setCellValueFactory(new PropertyValueFactory<service, String>("Ref_S"));
      typ3.setCellValueFactory(new PropertyValueFactory<service, String>("Type_S"));
@@ -141,13 +148,137 @@ public class ServiceController implements Initializable {
      cat8.setCellValueFactory(new PropertyValueFactory<service, String>("Categorie"));
     
      tableview2.setItems(list);
-    
+     
+         FilteredList<service> filteredData = new FilteredList<>(list, b -> true);
+		
+		tfcher.textProperty().addListener((observable, oldValue, newValue) -> {
+			filteredData.setPredicate(service -> {
+				// If filter text is empty, display all persons.
+								
+				if (newValue == null || newValue.isEmpty()) {
+					return true;
+                                        
+				}
+				
+				// Compare first name and last name of every person with filter text.
+				String lowerCaseFilter = newValue.toLowerCase();
+				
+				//if (Clients.getService_Id().toLowerCase().indexOf(lowerCaseFilter) != -1 ) {
+					//return true; // Filter matches first name.
+				 if (service.getNom_Service().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+					return true; // Filter matches last name.
+				}else if (service.getDescription().toLowerCase().indexOf(lowerCaseFilter) != -1 ) {
+					return true; // Filter matches first name.
+				}else if (service.getHoraire().toLowerCase().indexOf(lowerCaseFilter) != -1 ) {
+					return true; // Filter matches first name.
+				}else if (service.getCategorie().toLowerCase().indexOf(lowerCaseFilter) != -1 ) {
+					return true; // Filter matches first name.
+				}
+				     else  
+				    	 return false; // Does not match.
+			});
+		});
+		
+		// 3. Wrap the FilteredList in a SortedList. 
+		SortedList<service> sortedData = new SortedList<>(filteredData);
+		
+		// 4. Bind the SortedList comparator to the TableView comparator.
+		// 	  Otherwise, sorting the TableView would have no effect.
+		sortedData.comparatorProperty().bind(tableview2.comparatorProperty());
+		
+		// 5. Add sorted (and filtered) data to the table.
+		tableview2.setItems(sortedData);
+        tableview2.setRowFactory(tv -> new TableRow<service>() {
+                @Override
+                protected void updateItem(service item, boolean empty){
+                
+                }
+        });
  }
+            
+        
+
+    
+ 
  private void ajoutRecord(){
+     Alert alert = new Alert(Alert.AlertType.INFORMATION);
+     
      String query = "INSERT INTO service VALUES ('" + Sid.getText()+ "','" +Sref.getText() +"','" +Stype.getText() + "','"
              +Snom.getText() + "','" + Sdes.getText()+ "','" + Sdispo.getText() + "','" + Shor.getText() +"','" + Scate.getText()+"')";
      executeQuery(query);
+     
+     
+     if(Sid.getText().isEmpty()){
+         alert.setTitle("Informartion Dialog");
+         alert.setHeaderText(null);
+         alert.setContentText("veuillez insérer l'identifiant du service !");
+         alert.show();
+     }
+    else  if(Sref.getText().isEmpty()){
+          alert.setTitle("Informartion Dialog");
+         alert.setHeaderText(null);
+         alert.setContentText("veuillez insérer la reference du service !");
+         alert.show();
+         
+     }
+      else if(Stype.getText().isEmpty()){
+          alert.setTitle("Informartion Dialog");
+         alert.setHeaderText(null);
+         alert.setContentText("veuillez insérer le type du service !");
+         alert.show();  
+     }
+       else if(Snom.getText().isEmpty()){
+          alert.setTitle("Informartion Dialog");
+         alert.setHeaderText(null);
+         alert.setContentText("veuillez insérer le nom du service !");
+         alert.show();  
+     }
+        else  if(Sdes.getText().isEmpty()){
+          alert.setTitle("Informartion Dialog");
+         alert.setHeaderText(null);
+         alert.setContentText("veuillez insérer la description !");
+         alert.show();  
+     }
+      else if(Sdispo.getText().isEmpty()){
+          alert.setTitle("Informartion Dialog");
+         alert.setHeaderText(null);
+         alert.setContentText("veuillez insérer la disponibilité du service !");
+         alert.show();  
+     }
+    else  if(Shor.getText().isEmpty()){
+          alert.setTitle("Informartion Dialog");
+         alert.setHeaderText(null);
+         alert.setContentText("veuillez insérer l'horaire du service !");
+         alert.show();  
+     }
+      else if(Scate.getText().isEmpty()){
+          alert.setTitle("Informartion Dialog");
+         alert.setHeaderText(null);
+         alert.setContentText("veuillez insérer la catégorie du service !");
+         alert.show();  
+     }
+     
+     
+    // alert.setTitle("Inforamtion Dialog");
+    // alert.setHeaderText(null);
+    // alert.setContentText("SERVICE ajouté avec succes !");
+    // alert.show();
+     
+     
+     
+     
      showservice();
+     Sid.setText("");
+      Sref.setText("");
+       Stype.setText("");
+        Snom.setText("");
+         Sdes.setText("");
+          Sdispo.setText("");
+           Shor.setText("");
+            Scate.setText("");
+     
+     
+     
  }
  
   private void modifierRecord(){
@@ -187,6 +318,28 @@ public class ServiceController implements Initializable {
            
        }
     }
+     @FXML
+    private void handleMouseActionn(MouseEvent event) {
+       service service = tableview2.getSelectionModel().getSelectedItem();
+        Sid.setText(""+ service.getService_Id()     );
+        Sref.setText("" +service.getRef_S());
+        Stype.setText(""+service.getType_S());
+       Snom.setText(service.getNom_Service());
+       Sdes.setText(service.getDescription());
+        Sdispo.setText(service.getDisponibilite());
+         Shor.setText(service.getHoraire());
+                  Scate.setText(service.getCategorie());
+        
+    
+    }
+        
+        }
 
-}
+                  
+        
+        
+       
+
+
+
 

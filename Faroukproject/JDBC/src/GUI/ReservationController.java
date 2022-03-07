@@ -16,6 +16,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import entities.reservation;
+import entities.service;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.ResultSet;
@@ -23,6 +24,10 @@ import java.sql.Statement;
 import static java.time.Clock.system;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
+import javafx.scene.control.Alert;
+import javafx.scene.control.TableRow;
 import javafx.scene.control.cell.PropertyValueFactory;
 import utils.MyDB;
 
@@ -62,6 +67,8 @@ public class ReservationController implements Initializable {
     @FXML
     private TableView<reservation> tv;
     @FXML
+    private TextField trr;
+    @FXML
     private void handleAddButtonAction(ActionEvent event){
         if(event.getSource() == btnA){
             insertRecord();
@@ -88,6 +95,7 @@ public class ReservationController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        
         showreservation();
     }    
 
@@ -128,12 +136,95 @@ public class ReservationController implements Initializable {
      tbis.setCellValueFactory(new PropertyValueFactory<reservation, String>("Infos_Supp"));
     
      tv.setItems(list);
-    
+     
+      FilteredList<reservation> filteredData = new FilteredList<>(list, b -> true);
+		
+		trr.textProperty().addListener((observable, oldValue, newValue) -> {
+			filteredData.setPredicate(reservation -> {
+				// If filter text is empty, display all persons.
+								
+				if (newValue == null || newValue.isEmpty()) {
+					return true;
+                                        
+				}
+				
+				// Compare first name and last name of every person with filter text.
+				String lowerCaseFilter = newValue.toLowerCase();
+				
+				//if (reservation.getReservation_Id().toLowerCase().indexOf(lowerCaseFilter) != -1 ) {
+					//return true; // Filter matches first name.
+                                        // if (reservation.getDate_Debut().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+					//return true; // Filter matches last name.
+				//}else if (reservation.getDate_Fin().toLowerCase().indexOf(lowerCaseFilter) != -1 ) {
+					//return true; // Filter matches first name.
+				 if (reservation.getDuree().toLowerCase().indexOf(lowerCaseFilter) != -1 ) {
+					return true; // Filter matches first name.
+				}else if (reservation.getInfos_Supp().toLowerCase().indexOf(lowerCaseFilter) != -1 ) {
+					return true; // Filter matches first name.
+				}
+				     else  
+				    	 return false; // Does not match.
+			});
+		});
+		
+		// 3. Wrap the FilteredList in a SortedList. 
+		SortedList<reservation> sortedData = new SortedList<>(filteredData);
+		
+		// 4. Bind the SortedList comparator to the TableView comparator.
+		// 	  Otherwise, sorting the TableView would have no effect.
+		sortedData.comparatorProperty().bind(tv.comparatorProperty());
+		
+		// 5. Add sorted (and filtered) data to the table.
+		tv.setItems(sortedData);
+        tv.setRowFactory(tv -> new TableRow<reservation>() {
+            
+              // @Override
+                protected void updateItem(service item, boolean empty){
+                
+                }
+        });
  }
+
+
  private void insertRecord(){
+     Alert alert = new Alert(Alert.AlertType.INFORMATION);
      String query = "INSERT INTO reservation VALUES ('" + id.getText()+ "','" +dd.getText() +"','" +df.getText() + "','"
              +du.getText() + "','" + is.getText()+"')";
      executeQuery(query);
+     
+       if(id.getText().isEmpty()){
+         alert.setTitle("Informartion Dialog");
+         alert.setHeaderText(null);
+         alert.setContentText("veuillez insérer l'identifiant du Reservation !");
+         alert.show();
+     }
+    else  if(dd.getText().isEmpty()){
+          alert.setTitle("Informartion Dialog");
+         alert.setHeaderText(null);
+         alert.setContentText("veuillez insérer la date de début du service !");
+         alert.show();
+         
+     }
+      else if(df.getText().isEmpty()){
+          alert.setTitle("Informartion Dialog");
+         alert.setHeaderText(null);
+         alert.setContentText("veuillez insérer la date du fin du Reservation !");
+         alert.show();  
+     }
+       else if(du.getText().isEmpty()){
+          alert.setTitle("Informartion Dialog");
+         alert.setHeaderText(null);
+         alert.setContentText("veuillez insérer la durée du Reservation !");
+         alert.show();  
+     }
+        else  if(is.getText().isEmpty()){
+          alert.setTitle("Informartion Dialog");
+         alert.setHeaderText(null);
+         alert.setContentText("veuillez insérer les infos supp du Reservation !");
+         alert.show();  
+     }
+   
+     
      showreservation();
  }
  
@@ -166,7 +257,14 @@ public class ReservationController implements Initializable {
     }
 
     @FXML
-    private void handleButtonAction(MouseEvent event) {
+    private void handleMouseAction(MouseEvent event) {
+       reservation reservation = tv.getSelectionModel().getSelectedItem();
+        id.setText(""+ reservation.getReservation_Id());
+        dd.setText("" +reservation.getDate_Debut());
+        df.setText(""+reservation.getDate_Fin());
+       du.setText(reservation.getDuree());
+       is.setText(reservation.getInfos_Supp());
+        
     }
 }
 
