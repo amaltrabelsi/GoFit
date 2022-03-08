@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.ColorAdjust?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.PanierController">
+   <children>
+      <Label fx:id="votrepanier" layoutX="119.0" layoutY="14.0" text="Votre Panier" textFill="#ffd000">
+         <font>
+            <Font name="Bell MT Bold" size="32.0" />
+         </font>
+      </Label>
+      <TableView fx:id="panierproduit" layoutX="24.0" layoutY="86.0" prefHeight="192.0" prefWidth="538.0">
+        <columns>
+          <TableColumn fx:id="nom_pp" prefWidth="109.0" text="Nom Produit" />
+          <TableColumn fx:id="categorie_pp" prefWidth="93.0" text="Categorie" />
+            <TableColumn fx:id="prixpp" prefWidth="103.0" text="Prix Unitaire" />
+            <TableColumn fx:id="ref_pp" prefWidth="207.0" text="Refernce" />
+        </columns>
+         <effect>
+            <ColorAdjust />
+         </effect>
+      </TableView>
+      <Button fx:id="pageProduitsbt" layoutX="135.0" layoutY="344.0" mnemonicParsing="false" onAction="#pageProduits" text="Retour">
+         <font>
+            <Font name="Bell MT Bold" size="14.0" />
+         </font>
+         <textFill>
+            <LinearGradient endX="1.0" endY="1.0">
+               <stops>
+                  <Stop>
+                     <color>
+                        <Color />
+                     </color>
+                  </Stop>
+                  <Stop offset="1.0">
+                     <color>
+                        <Color red="0.34210526943206787" green="0.2337719351053238" />
+                     </color>
+                  </Stop>
+               </stops>
+            </LinearGradient>
+         </textFill></Button>
+      <Button fx:id="viderpanierbt" layoutX="233.0" layoutY="344.0" mnemonicParsing="false" onAction="#viderpanier" text="Vider Panier">
+         <textFill>
+            <LinearGradient endX="1.0" endY="1.0">
+               <stops>
+                  <Stop>
+                     <color>
+                        <Color />
+                     </color>
+                  </Stop>
+                  <Stop offset="1.0">
+                     <color>
+                        <Color red="0.34210526943206787" green="0.2337719351053238" />
+                     </color>
+                  </Stop>
+               </stops>
+            </LinearGradient>
+         </textFill>
+         <font>
+            <Font name="Bell MT" size="14.0" />
+         </font></Button>
+      <Button fx:id="passerCommandebt" layoutX="363.0" layoutY="344.0" mnemonicParsing="false" onAction="#passerCommande" text="Passer Commande">
+         <textFill>
+            <LinearGradient endX="1.0" endY="1.0">
+               <stops>
+                  <Stop>
+                     <color>
+                        <Color />
+                     </color>
+                  </Stop>
+                  <Stop offset="1.0">
+                     <color>
+                        <Color red="0.34210526943206787" green="0.2337719351053238" />
+                     </color>
+                  </Stop>
+               </stops>
+            </LinearGradient>
+         </textFill>
+         <font>
+            <Font name="Bell MT" size="14.0" />
+         </font></Button>
+      <TextField fx:id="clientid" layoutX="324.0" layoutY="28.0" />
+      <TextField fx:id="searchProductByID" layoutX="324.0" layoutY="53.0" />
+      <TextField fx:id="total" layoutX="363.0" layoutY="290.0" />
+      <Label layoutX="262.0" layoutY="294.0" prefHeight="17.0" prefWidth="83.0" text="Votre Total :">
+         <font>
+            <Font name="Bell MT" size="14.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

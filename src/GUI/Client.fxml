@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.ClientController">
+   <children>
+      <Button fx:id="ajouterbt" layoutX="348.0" layoutY="207.0" mnemonicParsing="false" onAction="#ajouterproduit" prefHeight="38.0" prefWidth="137.0" text="Ajouter Produit">
+         <textFill>
+            <LinearGradient endX="1.0" endY="1.0" startX="0.4075829383886256" startY="0.052132701421800945">
+               <stops>
+                  <Stop>
+                     <color>
+                        <Color />
+                     </color>
+                  </Stop>
+                  <Stop offset="1.0">
+                     <color>
+                        <Color red="0.9605262875556946" green="0.8004385828971863" />
+                     </color>
+                  </Stop>
+               </stops>
+            </LinearGradient>
+         </textFill>
+         <font>
+            <Font name="Bell MT Bold" size="14.0" />
+         </font>
+      </Button>
+      <Button fx:id="Commndebt" layoutX="352.0" layoutY="131.0" mnemonicParsing="false" onAction="#commande" prefHeight="45.0" prefWidth="137.0" text="Commande">
+         <font>
+            <Font name="Bell MT Bold" size="14.0" />
+         </font>
+         <textFill>
+            <LinearGradient endX="1.0" endY="1.0" startX="0.4075829383886256" startY="0.052132701421800945">
+               <stops>
+                  <Stop>
+                     <color>
+                        <Color />
+                     </color>
+                  </Stop>
+                  <Stop offset="1.0">
+                     <color>
+                        <Color red="0.9605262875556946" green="0.8004385828971863" />
+                     </color>
+                  </Stop>
+               </stops>
+            </LinearGradient>
+         </textFill>
+      </Button>
+      <Button fx:id="panierbt" layoutX="161.0" layoutY="207.0" mnemonicParsing="false" onAction="#GoToCart" prefHeight="38.0" prefWidth="129.0" text="Panier">
+         <font>
+            <Font name="Bell MT" size="14.0" />
+         </font>
+         <textFill>
+            <LinearGradient endX="1.0" endY="1.0" startX="0.4075829383886256" startY="0.052132701421800945">
+               <stops>
+                  <Stop>
+                     <color>
+                        <Color />
+                     </color>
+                  </Stop>
+                  <Stop offset="1.0">
+                     <color>
+                        <Color red="0.9605262875556946" green="0.8004385828971863" />
+                     </color>
+                  </Stop>
+               </stops>
+            </LinearGradient>
+         </textFill>
+      </Button>
+      <Button fx:id="listproduitbt" layoutX="160.0" layoutY="131.0" mnemonicParsing="false" onAction="#listproduits" prefHeight="45.0" prefWidth="129.0" text="List des produit">
+         <textFill>
+            <LinearGradient endX="1.0" endY="1.0" startX="0.4075829383886256" startY="0.052132701421800945">
+               <stops>
+                  <Stop>
+                     <color>
+                        <Color />
+                     </color>
+                  </Stop>
+                  <Stop offset="1.0">
+                     <color>
+                        <Color red="0.9605262875556946" green="0.8004385828971863" />
+                     </color>
+                  </Stop>
+               </stops>
+            </LinearGradient>
+         </textFill>
+         <font>
+            <Font name="Bell MT Bold" size="14.0" />
+         </font>
+      </Button>
+      <Pane layoutX="-11.0" prefHeight="58.0" prefWidth="602.0">
+         <children>
+            <Label layoutX="244.0" layoutY="4.0" text="Go" textFill="#ffd341">
+               <font>
+                  <Font name="Georgia Bold" size="39.0" />
+               </font>
+            </Label>
+            <Label layoutX="301.0" layoutY="4.0" text="Fit">
+               <font>
+                  <Font name="Georgia Bold" size="39.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <Line endX="-6.0" endY="234.0" layoutX="322.0" layoutY="105.0" startX="-12.0" startY="-9.0" />
+      <TextField fx:id="clientId" layoutX="242.0" layoutY="58.0" promptText="write client Id" />
+   </children>
+</AnchorPane>

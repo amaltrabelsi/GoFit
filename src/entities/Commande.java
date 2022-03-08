@@ -5,32 +5,56 @@
  */
 package entities;
 
+import java.util.Date;
+
 /**
  *
  * @author ASUS
  */
 public class Commande {
-        private int Commande_Id ;
-    private String Date_C;
+    private int Commande_Id ;
+
+    private Date Date_C;
     private double Total;
     private int Nb_Produit;
     private String Mode_Paiement;
     private int FK_Reg_Id;
-    private int FK_Panier_Id;
+    private int FK_Client_Id;
 
     public Commande() {
     }
 
-    public Commande(String Date_C, double Total, int Nb_Produit, String Mode_Paiement, int FK_Reg_Id, int FK_Panier_Id) {
-        this.Date_C = Date_C;
+
+//code in panier est l id du client car that works better obviouslyy :/
+    public Commande( double Total, int Nb_Produit, String Mode_Paiement, int FK_Reg_Id, int FK_Client_Id) {
         this.Total = Total;
         this.Nb_Produit = Nb_Produit;
         this.Mode_Paiement = Mode_Paiement;
         this.FK_Reg_Id = FK_Reg_Id;
-        this.FK_Panier_Id = FK_Panier_Id;
+        this.FK_Client_Id = FK_Client_Id;
     }
 
-    public Commande(int Commande_Id, String Date_C, double Total, int Nb_Produit, String Mode_Paiement) {
+    public Commande(int Commande_Id, double Total, int Nb_Produit, String Mode_Paiement) {
+        this.Commande_Id = Commande_Id;
+        this.Total = Total;
+        this.Nb_Produit = Nb_Produit;
+        this.Mode_Paiement = Mode_Paiement;
+    }
+
+    public Commande(int Commande_Id, Date Date_C, double Total, String Mode_Paiement) {
+        this.Commande_Id = Commande_Id;
+        this.Date_C = Date_C;
+        this.Total = Total;
+        this.Mode_Paiement = Mode_Paiement;
+    }
+
+    public Commande(Date Date_C, double Total, String Mode_Paiement) {
+        this.Date_C = Date_C;
+        this.Total = Total;
+        this.Mode_Paiement = Mode_Paiement;
+    }
+
+    public Commande(int Commande_Id, Date Date_C, double Total, int Nb_Produit, String Mode_Paiement) {
         this.Commande_Id = Commande_Id;
         this.Date_C = Date_C;
         this.Total = Total;
@@ -39,7 +63,7 @@ public class Commande {
     }
     
  // one without any foreign keys ya nour
-    public Commande(String Date_C, double Total, int Nb_Produit, String Mode_Paiement) {
+    public Commande(Date Date_C, double Total, int Nb_Produit, String Mode_Paiement) {
         this.Date_C = Date_C;
         this.Total = Total;
         this.Nb_Produit = Nb_Produit;
@@ -55,11 +79,11 @@ public class Commande {
         this.Commande_Id = Commande_Id;
     }
 
-    public String getDate_C() {
+    public Date getDate_C() {
         return Date_C;
     }
 
-    public void setDate_C(String Date_C) {
+    public void setDate_C(Date Date_C) {
         this.Date_C = Date_C;
     }
 
@@ -95,18 +119,20 @@ public class Commande {
         this.FK_Reg_Id = FK_Reg_Id;
     }
 
-    public int getFK_Panier_Id() {
-        return FK_Panier_Id;
+    public int getFK_Client_Id() {
+        return FK_Client_Id;
     }
 
-    public void setFK_Panier_Id(int FK_Panier_Id) {
-        this.FK_Panier_Id = FK_Panier_Id;
+    public void setFK_Client_Id(int FK_Client_Id) {
+        this.FK_Client_Id =FK_Client_Id;
     }
 
     @Override
     public String toString() {
-        return "Commande{" + "Commande_Id=" + Commande_Id + ", Date_C=" + Date_C + ", Total=" + Total + ", Nb_Produit=" + Nb_Produit + ", Mode_Paiement=" + Mode_Paiement + ", FK_Reg_Id=" + FK_Reg_Id + ", FK_Panier_Id=" + FK_Panier_Id + '}';
+        return "Commande{" + "Commande_Id=" + Commande_Id + ", Date_C=" + Date_C + ", Total=" + Total + ", Nb_Produit=" + Nb_Produit + ", Mode_Paiement=" + Mode_Paiement + ", FK_Reg_Id=" + FK_Reg_Id + ",FK_Client_Id=" +FK_Client_Id + '}';
     }
+
+
 
     
     

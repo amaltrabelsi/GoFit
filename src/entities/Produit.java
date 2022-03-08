@@ -17,6 +17,9 @@ public class Produit {
     private String Description;
     private String Nom_Produit;
     private String Categorie ;
+    
+    
+    private String Path_Image ;
     private int Fk_AvisP_Id;
     private int Fk_CommentaireP_Id;
     
@@ -49,12 +52,62 @@ public class Produit {
         this.Fk_AvisP_Id = Fk_AvisP_Id;
         this.Fk_CommentaireP_Id = Fk_CommentaireP_Id;
     }
+
+    public Produit(String Ref_P, double Prix_Uni, int Quantite, String Description, String Nom_Produit, String Categorie, String Path_Image, int Fk_AvisP_Id, int Fk_CommentaireP_Id) {
+        this.Ref_P = Ref_P;
+        this.Prix_Uni = Prix_Uni;
+        this.Quantite = Quantite;
+        this.Description = Description;
+        this.Nom_Produit = Nom_Produit;
+        this.Categorie = Categorie;
+       
+        this.Path_Image = Path_Image;
+        this.Fk_AvisP_Id = Fk_AvisP_Id;
+        this.Fk_CommentaireP_Id = Fk_CommentaireP_Id;
+    }
+
+    public Produit(String Ref_P, double Prix_Uni, int Quantite, String Description, String Nom_Produit, String Categorie) {
+        this.Ref_P = Ref_P;
+        this.Prix_Uni = Prix_Uni;
+        this.Quantite = Quantite;
+        this.Description = Description;
+        this.Nom_Produit = Nom_Produit;
+        this.Categorie = Categorie;
+    }
+
+    public Produit(int Produit_Id, String Ref_P, double Prix_Uni, int Quantite, String Description, String Nom_Produit, String Categorie) {
+        this.Produit_Id = Produit_Id;
+        this.Ref_P = Ref_P;
+        this.Prix_Uni = Prix_Uni;
+        this.Quantite = Quantite;
+        this.Description = Description;
+        this.Nom_Produit = Nom_Produit;
+        this.Categorie = Categorie;
+    }
     
+
+    public Produit(String Ref_P, double Prix_Uni, int Quantite, String Description, String Nom_Produit, String Categorie, String Path_Image) {
+        this.Ref_P = Ref_P;
+        this.Prix_Uni = Prix_Uni;
+        this.Quantite = Quantite;
+        this.Description = Description;
+        this.Nom_Produit = Nom_Produit;
+        this.Categorie = Categorie;
+
+        this.Path_Image = Path_Image;
+    }
     
+   
+//getters and setters
+
+    public String getPath_Image() {
+        return Path_Image;
+    }
+
     
-    
-    //getters and setters 
-    
+    public void setPath_Image(String Path_Image) {
+        this.Path_Image = Path_Image;
+    }
 
     public int getProduit_Id() {
         return Produit_Id;
@@ -127,13 +180,26 @@ public class Produit {
     public void setFk_CommentaireP_Id(int Fk_CommentaireP_Id) {
         this.Fk_CommentaireP_Id = Fk_CommentaireP_Id;
     }
+
+    public Produit(int Produit_Id, String Ref_P, int Quantite, String Description, String Nom_Produit, String Categorie) {
+        this.Produit_Id = Produit_Id;
+        this.Ref_P = Ref_P;
+        this.Quantite = Quantite;
+        this.Description = Description;
+        this.Nom_Produit = Nom_Produit;
+        this.Categorie = Categorie;
+    }
+    
+    
     
     //affichage ya nour 
 
     @Override
     public String toString() {
-        return "Produit{" + "Produit_Id=" + Produit_Id + ", Ref_P=" + Ref_P + ", Prix_Uni=" + Prix_Uni + ", Quantite=" + Quantite + ", Description=" + Description + ", Nom_Produit=" + Nom_Produit + ", Categorie=" + Categorie + ", Fk_AvisP_Id=" + Fk_AvisP_Id + ", Fk_CommentaireP_Id=" + Fk_CommentaireP_Id + '}';
+        return "Produit{" + "Produit_Id=" + Produit_Id + ", Ref_P=" + Ref_P + ", Prix_Uni=" + Prix_Uni + ", Quantite=" + Quantite + ", Description=" + Description + ", Nom_Produit=" + Nom_Produit + ", Categorie=" + Categorie +  ", Path_Image=" + Path_Image + ", Fk_AvisP_Id=" + Fk_AvisP_Id + ", Fk_CommentaireP_Id=" + Fk_CommentaireP_Id + '}';
     }
+
+
     
     
     
