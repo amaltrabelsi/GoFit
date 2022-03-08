@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.ColorAdjust?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane fx:id="recherchepannel" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.RechercherActualiteController">
+   <children>
+      <Pane layoutY="90.0" prefHeight="5.0" prefWidth="800.0" style="-fx-background-color: black;" />
+      <ImageView fitHeight="52.0" fitWidth="158.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../getyour%20fun.png" />
+         </image>
+      </ImageView>
+     
+      <VBox layoutX="295.0" layoutY="147.0" prefHeight="174.0" prefWidth="230.0" spacing="65.0">
+         <children>
+            <TextField fx:id="actualite" prefHeight="41.0" prefWidth="230.0" promptText="saisir titre actualite" styleClass="shadow" stylesheets="@../style/style/style.css">
+               <font>
+                  <Font name="Bell MT Bold" size="15.0" />
+               </font>
+            </TextField>
+         </children>
+      </VBox>
+      <VBox layoutX="551.0" layoutY="219.0" prefHeight="200.0" prefWidth="100.0" />
+      <TableView id="search_Event_table " fx:id="table_events" layoutX="45.0" layoutY="271.0" prefHeight="234.0" prefWidth="710.0" stylesheets="@../style/style/style.css">
+        <columns>
+          <TableColumn id="Event" fx:id="title" prefWidth="90.0" text="Tittre" />
+          <TableColumn fx:id="Categorie" prefWidth="95.0" text="Catégorie" />
+            <TableColumn fx:id="Description" prefWidth="103.0" text="Description" />
+            <TableColumn fx:id="Contenu" prefWidth="421.0" text="Contenu" />
+        </columns>
+         <effect>
+            <ColorAdjust brightness="-0.22" contrast="0.09" hue="-0.13" saturation="-0.15" />
+         </effect>
+         
+      </TableView>
+      <Label layoutX="25.0" layoutY="119.0" prefHeight="26.0" prefWidth="246.0" text="Trouver Un Article" textAlignment="RIGHT">
+         <font>
+            <Font name="Bell MT Bold" size="18.0" />
+         </font>
+         <textFill>
+            <LinearGradient endX="1.0" endY="1.0">
+               <stops>
+                  <Stop>
+                     <color>
+                        <Color />
+                     </color>
+                  </Stop>
+                  <Stop offset="1.0">
+                     <color>
+                        <Color red="1.0" green="0.9333333373069763" />
+                     </color>
+                  </Stop>
+               </stops>
+            </LinearGradient>
+         </textFill>
+      </Label>
+      <ImageView fitHeight="78.0" fitWidth="200.0" layoutX="668.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../style/logo.png" />
+         </image>
+      </ImageView>
+      <Text layoutX="35.0" layoutY="58.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Go">
+         <font>
+            <Font name="Bell MT Bold" size="50.0" />
+         </font>
+      </Text>
+      <Text fill="#dacc08" layoutX="104.0" layoutY="59.0" strokeType="OUTSIDE" strokeWidth="0.0" text="FIT">
+         <font>
+            <Font name="Bell MT Bold" size="50.0" />
+         </font>
+      </Text>
+      <Button fx:id="rechercher" layoutX="551.0" layoutY="147.0" mnemonicParsing="false" onAction="#SearchEvent" prefHeight="41.0" prefWidth="68.0" stylesheets="@../style/style/style.css" text="Valider" textAlignment="RIGHT">
+         <styleClass>
+            <String fx:value="search-button" />
+            <String fx:value="search-button" />
+            <String fx:value="shadow" />
+         </styleClass>
+      </Button>
+      <Button fx:id="retour" layoutX="9.0" layoutY="551.0" mnemonicParsing="false" onAction="#retour" stylesheets="@../style/style/style.css" text="Retour">
+         <styleClass>
+            <String fx:value="button" />
+            <String fx:value="search-button" />
+            <String fx:value="search-box" />
+         </styleClass>
+      </Button>
+      <ImageView fitHeight="37.0" fitWidth="30.0" layoutX="256.0" layoutY="153.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../style/loop.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>

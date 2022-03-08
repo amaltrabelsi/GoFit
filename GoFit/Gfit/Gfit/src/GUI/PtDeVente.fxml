@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="137.0" prefWidth="229.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.PtdeventeController">
+  <children>
+      <HBox alignment="CENTER" prefHeight="137.0" prefWidth="207.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <ImageView fx:id="imgIV" fitHeight="77.0" fitWidth="87.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../style/marketicon.png" />
+               </image>
+               <HBox.margin>
+                  <Insets left="5.0" />
+               </HBox.margin>
+            </ImageView>
+            <VBox prefHeight="93.0" prefWidth="121.0">
+               <children>
+                  <Label fx:id="nameLBL" alignment="TOP_LEFT" prefHeight="21.0" prefWidth="471.0" stylesheets="@../style/style/ptdeventeStyle.css" text="name" />
+                  <Label fx:id="proprietaireLBL" alignment="TOP_LEFT" prefHeight="9.0" prefWidth="99.0" styleClass="root" stylesheets="@../style/style/ptdeventeStyle.css" text="proprietaire">
+                     <font>
+                        <Font size="15.0" />
+                     </font></Label>
+                  <Label fx:id="adressLBL" alignment="TOP_LEFT" prefHeight="21.0" prefWidth="488.0" styleClass="root" stylesheets="@../style/style/ptdeventeStyle.css" text="adresse" />
+                  <Label fx:id="date_ouvLBL" alignment="TOP_LEFT" prefHeight="21.0" prefWidth="488.0" styleClass="root" stylesheets="@../style/style/ptdeventeStyle.css" text="date ouverture" />
+                  <Label fx:id="idLBL" text="0" visible="false" />
+                  <Label fx:id="modifierBTN" alignment="CENTER" prefHeight="20.0" prefWidth="123.0" stylesheets="@../style/style/ptdeventeStyle.css" text="MODIFIER" />
+               </children>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <HBox.margin>
+                  <Insets bottom="20.0" left="20.0" top="20.0" />
+               </HBox.margin>
+            </VBox>
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>

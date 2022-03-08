@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.AjouterUneBoutiqueController">
+   <children>
+      <Pane layoutY="94.0" prefHeight="1.0" prefWidth="800.0" style="-fx-background-color: black;" />
+      <ImageView fitHeight="52.0" fitWidth="158.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../getyour%20fun.png" />
+         </image>
+      </ImageView>
+      <VBox layoutX="21.0" layoutY="157.0" prefHeight="385.0" prefWidth="230.0" spacing="30.0">
+         <children>
+            <TextField fx:id="nomboutique" prefHeight="26.0" prefWidth="198.0" promptText="Nom boutique">
+               <font>
+                  <Font name="Arial Bold" size="12.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="nomgerant" prefHeight="26.0" prefWidth="198.0" promptText="Nom du gérant" />
+            <TextField fx:id="prenomgerant" promptText="Prenom du gérant" />
+            <DatePicker fx:id="datefondation" prefHeight="25.0" prefWidth="250.0" promptText="date de fondation" />
+            <TextField fx:id="region" promptText="region" />
+            <TextField fx:id="pays_evenement" promptText="adresse" />
+         </children>
+      </VBox>
+      <Button fx:id="ajouter_event" layoutX="648.0" layoutY="539.0" mnemonicParsing="false" onAction="#Insert" prefHeight="34.0" prefWidth="88.0" stylesheets="@../style/style/style.css" text="Ajouter" textAlignment="RIGHT">
+         <styleClass>
+            <String fx:value="valider" />
+            <String fx:value="search-box" />
+            <String fx:value="shadow" />
+         </styleClass></Button>
+      <Label layoutX="21.0" layoutY="112.0" prefHeight="26.0" prefWidth="246.0" text="Créer Une Nouvelle Boutique" textAlignment="RIGHT">
+         <font>
+            <Font name="Bell MT Bold" size="18.0" />
+         </font>
+         <textFill>
+            <LinearGradient endX="1.0" endY="1.0">
+               <stops>
+                  <Stop>
+                     <color>
+                        <Color />
+                     </color>
+                  </Stop>
+                  <Stop offset="1.0">
+                     <color>
+                        <Color red="1.0" green="0.9333333373069763" />
+                     </color>
+                  </Stop>
+               </stops>
+            </LinearGradient>
+         </textFill>
+      </Label>
+      <Button fx:id="retour" layoutX="30.0" layoutY="542.0" mnemonicParsing="false" onAction="#retour" stylesheets="@../style/style/style.css" text="retour">
+         <styleClass>
+            <String fx:value="search-box" />
+            <String fx:value="shadow" />
+         </styleClass></Button>
+      <VBox layoutX="451.0" layoutY="157.0" prefHeight="142.0" prefWidth="230.0" spacing="30.0">
+         <children>
+            <TextField fx:id="telfixe" promptText="Téléphone fixe" />
+            <TextField fx:id="telmobile" promptText="Téléphone Mobile" />
+         </children>
+      </VBox>
+      <TextArea fx:id="description" layoutX="451.0" layoutY="250.0" prefHeight="200.0" prefWidth="230.0" promptText="Description" />
+      <ImageView fitHeight="78.0" fitWidth="200.0" layoutX="678.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../../../Documents/NetBeansProjects/BRABI/newtest/src/style/logo.png" />
+         </image>
+      </ImageView>
+      <Text layoutX="45.0" layoutY="64.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Go">
+         <font>
+            <Font name="Bell MT Bold" size="50.0" />
+         </font>
+      </Text>
+      <Text fill="#dacc08" layoutX="114.0" layoutY="65.0" strokeType="OUTSIDE" strokeWidth="0.0" text="FIT">
+         <font>
+            <Font name="Bell MT Bold" size="50.0" />
+         </font>
+      </Text>
+      <ImageView fitHeight="37.0" fitWidth="30.0" layoutX="603.0" layoutY="540.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../style/2074143.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>

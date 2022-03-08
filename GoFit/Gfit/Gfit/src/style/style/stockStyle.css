@@ -1,0 +1,27 @@
+.root{
+    -fx-font: 16px "Courier New";
+}
+
+#nameLBL {
+	-fx-font : 20px "Courier New";
+    -fx-text-alignment: center;
+    -fx-color: #01303f;
+    -fx-font-weight: bold;
+
+}
+
+#restockBTN{
+    -fx-font: 10px "Tahoma";
+    -fx-background-color:  #89d6fb;
+    -fx-text-fill: #01303f;
+    -fx-text-alignment: center;
+}
+
+#restockBTN:hover{
+    -fx-background-color: #01303f;
+    -fx-text-fill: #89d6fb;
+}
+
+GridPane{
+    -fx-background-color: #d4f0fc;
+}

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.ListProduitController">
+   <children>
+      <Button fx:id="PageAjoutProduit" layoutX="348.0" layoutY="345.0" mnemonicParsing="false" onAction="#PageAjoutProduit" prefHeight="25.0" prefWidth="149.0" text="Ajout Produit" />
+      <TableView fx:id="table_produit" layoutX="15.0" layoutY="123.0" prefHeight="196.0" prefWidth="571.0" style="-fx-border-color: black;">
+        <columns>
+          <TableColumn fx:id="nom_Produit" prefWidth="75.0" text="Nom" />
+          <TableColumn fx:id="quantite_Produit" prefWidth="75.0" text="Quantité" />
+            <TableColumn fx:id="Code_Produit" prefWidth="75.0" text="Réference" />
+            <TableColumn fx:id="Prix_Produit" prefWidth="75.0" text="Prix" />
+            <TableColumn fx:id="categorie_Produit" prefWidth="75.0" text="Catégorie" />
+            <TableColumn fx:id="description_Produit" prefWidth="195.0" text="Description" />
+        </columns>
+      </TableView>
+      <TextField fx:id="nomchercher" layoutX="338.0" layoutY="77.0" />
+      <Button fx:id="chercher" layoutX="512.0" layoutY="77.0" mnemonicParsing="false" onAction="#cherhcerProduit" text="Chercher" />
+      <Button fx:id="menubt" layoutX="116.0" layoutY="345.0" mnemonicParsing="false" onAction="#menupage" prefHeight="25.0" prefWidth="95.0" text="Boutique" />
+      <Pane layoutY="1.0" prefHeight="64.0" prefWidth="600.0">
+         <children>
+            <Label layoutX="38.0" layoutY="12.0" prefHeight="32.0" prefWidth="230.0" text="Gérer Produits">
+               <font>
+                  <Font name="Bell MT Bold" size="34.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

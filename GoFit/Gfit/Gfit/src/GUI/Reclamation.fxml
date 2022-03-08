@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.SplitMenuButton?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" fx:id="fenetreReclamation" prefHeight="516.0" prefWidth="779.0" style="-fx-prompt-text-fill: black;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.ReclamationController">
+   <children>
+      <ImageView fitHeight="24.0" fitWidth="20.0" layoutX="194.0" layoutY="185.0">
+         <image>
+            <Image url="@../Images/hat.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="134.0" layoutY="22.0" prefHeight="12.0" prefWidth="481.0" text="                                     Reclamation">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="158.0" layoutY="79.0" prefHeight="25.0" prefWidth="448.0" text="Cher client pour passer une reclamation vous devez remplir ce formulaire :" textFill="RED" />
+      <SplitMenuButton fx:id="Categoriereclamation" alignment="TOP_LEFT" contentDisplay="TOP" layoutX="221.0" layoutY="188.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" prefHeight="26.0" prefWidth="219.0" text="Catégorie" textFill="#867d7d">
+         <items>
+            <MenuItem fx:id="Boutique" mnemonicParsing="false" onAction="#BoutiqueReclamtion" onMenuValidation="#BoutiqueReclamtion" text="       Boutique" />
+            <MenuItem fx:id="Coach" mnemonicParsing="false" onAction="#CoachReclamtion" onMenuValidation="#CoachReclamtion" text="      Coach" />
+            <MenuItem fx:id="Compte" mnemonicParsing="false" onAction="#CompteReclamtion" onMenuValidation="#CompteReclamtion" text="      Compte" />
+         </items>
+      </SplitMenuButton>
+      <TextArea fx:id="ContenuReclamation" layoutX="223.0" layoutY="259.0" prefHeight="147.0" prefWidth="321.0" promptText="Votre reclamation ..." style="-fx-background-color: 0.0; -fx-border-width: 0 0 1 0; -fx-border-color: black;" />
+      <PasswordField fx:id="mdpgmail" layoutX="407.0" layoutY="125.0" prefHeight="26.0" prefWidth="237.0" promptText="Mot de passe de votre gmail" style="-fx-background-color: 0.0; -fx-border-width: 0 0 1 0; -fx-border-color: black;" />
+      <ImageView fitHeight="17.0" fitWidth="20.0" layoutX="382.0" layoutY="130.0">
+         <image>
+            <Image url="@../Images/key%20(1).png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="26.0" fitWidth="24.0" layoutX="189.0" layoutY="252.0">
+         <image>
+            <Image url="@../Images/fountain-pen-close-up.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="envoyereclamation" layoutX="490.0" layoutY="436.0" mnemonicParsing="false" onAction="#envoyereclamation" prefHeight="30.0" prefWidth="108.0" style="-fx-background-color: black;" text="Envoyer" />
+      <ImageView fitHeight="30.0" fitWidth="37.0" layoutX="13.0" layoutY="19.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Images/icons8-back-24%20(1).png" />
+         </image>
+      </ImageView>
+      <Button fx:id="back" layoutX="16.0" layoutY="22.0" mnemonicParsing="false" onAction="#back" opacity="0.0" prefHeight="25.0" prefWidth="30.0" />
+      <TextField fx:id="email1" layoutX="115.0" layoutY="128.0" prefHeight="25.0" prefWidth="237.0" promptText="Email" style="-fx-background-color: 0.0; -fx-border-width: 0 0 1 0; -fx-border-color: black;" />
+      <ImageView fitHeight="17.0" fitWidth="20.0" layoutX="95.0" layoutY="133.0">
+         <image>
+            <Image url="@../Images/email.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>

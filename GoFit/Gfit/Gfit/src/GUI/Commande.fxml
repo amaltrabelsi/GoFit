@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.CommandeController">
+   <children>
+      <Label layoutX="86.0" layoutY="24.0" prefHeight="17.0" prefWidth="187.0" text="Les Commandes">
+         <font>
+            <Font name="Bell MT Bold" size="24.0" />
+         </font>
+      </Label>
+      <TableView fx:id="commandetable" layoutX="74.0" layoutY="100.0" prefHeight="200.0" prefWidth="435.0" style="-fx-background-color: white; -fx-border-color: black;">
+        <columns>
+          <TableColumn fx:id="nom_commande" prefWidth="101.0" text="Commande" />
+          <TableColumn fx:id="date_commande" prefWidth="83.0" text="Date" />
+            <TableColumn fx:id="pay_Commande" prefWidth="129.0" text="Mode Paiement" />
+            <TableColumn fx:id="total_commande" prefWidth="120.0" text="Total" />
+        </columns>
+      </TableView>
+      <Button fx:id="menuid" layoutX="454.0" layoutY="335.0" mnemonicParsing="false" onAction="#gotomenu" text="Menu" />
+      <TextField fx:id="searchCommandByID" layoutX="338.0" layoutY="27.0" />
+   </children>
+</AnchorPane>

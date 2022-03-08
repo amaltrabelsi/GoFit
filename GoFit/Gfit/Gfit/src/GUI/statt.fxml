@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.AreaChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.StattController">
+   <children>
+      <Label fx:id="notext" layoutX="413.0" layoutY="89.0" />
+      <Label fx:id="yestext" layoutX="635.0" layoutY="89.0" />
+      <Label fx:id="review" layoutX="23.0" layoutY="19.0" prefHeight="17.0" prefWidth="505.0" textFill="#00cd29">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <AreaChart fx:id="LineChart1" layoutX="560.0" layoutY="153.0" prefHeight="394.0" prefWidth="545.0">
+         <xAxis>
+            <CategoryAxis side="BOTTOM" fx:id="x" />
+         </xAxis>
+         <yAxis>
+            <NumberAxis fx:id="y" side="LEFT" />
+         </yAxis>
+      </AreaChart>
+      <Label layoutX="145.0" layoutY="122.0" prefHeight="17.0" prefWidth="232.0" text="Statistique des Likes" textFill="#1e76e3">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="719.0" layoutY="126.0" prefHeight="17.0" prefWidth="232.0" text="Statistique des dislikes" textFill="#134179">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="18.0" />
+         </font>
+      </Label>
+      <LineChart fx:id="LineChart" layoutX="38.0" layoutY="173.0">
+         <xAxis>
+            <CategoryAxis fx:id="X" side="BOTTOM" />
+         </xAxis>
+         <yAxis>
+            <NumberAxis fx:id="Y" side="LEFT" />
+         </yAxis>
+      </LineChart>
+   </children>
+</AnchorPane>

@@ -1,0 +1,24 @@
+.root{
+    -fx-font: 12px "Courier New";
+}
+
+#nameLBL {
+	-fx-font : 18px "Courier New";
+    -fx-text-alignment: center;
+    -fx-color: #01303f;
+    -fx-font-weight: bold;
+
+}
+
+#modifierBTN{
+    -fx-font: 10px "Tahoma";
+    -fx-background-color:  black;
+    -fx-text-fill: #ffffff;
+    -fx-text-alignment: center;
+}
+
+#modifierBTN:hover{
+    -fx-background-color: #cec000;
+    -fx-text-fill: black;
+}
+

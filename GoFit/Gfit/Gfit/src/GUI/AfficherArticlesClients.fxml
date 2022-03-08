@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import java.lang.String?>
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/17" fx:controller="GUI.AfficherArticlesClientsController">
+    
+    <children>
+        <ScrollPane prefHeight="600.0" prefWidth="1000.0">
+            <content>
+                <BorderPane fx:id="mainBorderPane" prefHeight="592.0" prefWidth="997.0">
+                    <center>
+                        <VBox prefHeight="594.0" prefWidth="612.0" BorderPane.alignment="CENTER">
+                            <children>
+                                <Pane fx:id="paneId" maxHeight="560.0" maxWidth="1000.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="22.0" prefWidth="775.0">
+                                    <children>
+                                        <Button mnemonicParsing="false" onAction="#plusButtonClicked" text="+">
+                                 <stylesheets>
+                                    <URL value="@../style/style/gestionPointDeVenteStyle.css" />
+                                    <URL value="@../style/style/style.css" />
+                                 </stylesheets></Button>
+                                    </children>
+                                </Pane>
+                                <ScrollPane fx:id="scrollPaneID" maxHeight="574.0" maxWidth="680.0" prefHeight="571.0" prefWidth="682.0">
+                                    <content>
+                                        <GridPane fx:id="ptGP" onMouseClicked="#onGP_clicked" prefHeight="0.0" prefWidth="993.0">
+                                            <columnConstraints>
+                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                            </columnConstraints>
+                                        </GridPane>
+                                    </content>
+                           <VBox.margin>
+                              <Insets left="200.0" />
+                           </VBox.margin>
+                                </ScrollPane>
+                            </children>
+                     <BorderPane.margin>
+                        <Insets left="10.0" />
+                     </BorderPane.margin>
+                        </VBox>
+                    </center>
+                    <right>
+                        <VBox fx:id="ajoutModifPanel" prefHeight="592.0" prefWidth="204.0" BorderPane.alignment="CENTER">
+                            <children>
+                                <Pane nodeOrientation="RIGHT_TO_LEFT" prefHeight="34.0" prefWidth="232.0">
+                                    <children>
+                                        <Button layoutX="-3.0" layoutY="-2.0" mnemonicParsing="false" onAction="#xAjouterModifierClicked" prefHeight="22.0" prefWidth="22.0" text="x">
+                                 <stylesheets>
+                                    <URL value="@../style/style/gestionPointDeVenteStyle.css" />
+                                    <URL value="@../style/style/style.css" />
+                                 </stylesheets></Button>
+                                    </children>
+                                </Pane>
+                                <Label fx:id="pointdeventeLBL" styleClass="root" stylesheets="@../style/style/gestionPointDeVenteStyle.css" text="Article" />
+                                <Label fx:id="hiddenIdLBL" text="0" visible="false" />
+                                <Label styleClass="root" stylesheets="@../style/style/gestionPointDeVenteStyle.css" text="Categorie" />
+                                <TextField fx:id="nameTF" stylesheets="@../style/style/gestionPointDeVenteStyle.css" />
+                                <Label styleClass="root" stylesheets="@../style/style/gestionPointDeVenteStyle.css" text="Titre" />
+                                <TextField fx:id="proprioTF" stylesheets="@../style/style/gestionPointDeVenteStyle.css" />
+                                <Label styleClass="root" stylesheets="@../style/style/gestionPointDeVenteStyle.css" text="Description" />
+                                <TextField fx:id="adresseTF" prefHeight="76.0" prefWidth="204.0" stylesheets="@../style/style/gestionPointDeVenteStyle.css" />
+                                <Label styleClass="root" stylesheets="@../style/style/gestionPointDeVenteStyle.css" text="Contenu" />
+                        <TextField fx:id="adresseTF1" prefHeight="303.0" prefWidth="204.0" stylesheets="@../style/style/gestionPointDeVenteStyle.css" />
+                            </children>
+                        </VBox>
+                    </right>
+                </BorderPane>
+            </content>
+        </ScrollPane>
+      <Pane prefHeight="600.0" prefWidth="202.0" style="-fx-background-color: black;" stylesheets="@../style/style/style.css">
+         <children>
+            <ImageView fitHeight="88.0" fitWidth="103.0" layoutX="43.0" layoutY="23.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../style/logo.png" />
+               </image>
+            </ImageView>
+            <Separator layoutY="129.0" prefHeight="3.0" prefWidth="171.0" style="-fx-background-color: #DAA520;" />
+            <Button fx:id="notenavigate" alignment="BASELINE_LEFT" layoutX="-14.0" layoutY="206.0" mnemonicParsing="false" onAction="#notenavigate" prefHeight="46.0" prefWidth="188.0" stylesheets="@../style/style/style.css" text="Accueil" textFill="WHITE">
+               <graphic>
+                  <FontAwesomeIconView fill="WHITE" text="" />
+               </graphic>
+               <padding>
+                  <Insets left="35.0" />
+               </padding>
+               <styleClass>
+                  <String fx:value="shadow" />
+                  <String fx:value="transparent" />
+                  <String fx:value="button" />
+               </styleClass>
+            </Button>
+            <Button fx:id="boutiquesidebar" alignment="BASELINE_LEFT" layoutX="-19.0" layoutY="247.0" mnemonicParsing="false" onAction="#BoutiqueSidebar" prefHeight="46.0" prefWidth="188.0" stylesheets="@../style/style/style.css" text="Boutiques" textFill="WHITE">
+               <graphic>
+                  <FontAwesomeIconView fill="WHITE" text="" />
+               </graphic>
+               <padding>
+                  <Insets left="35.0" />
+               </padding>
+               <styleClass>
+                  <String fx:value="shadow" />
+                  <String fx:value="transparent" />
+                  <String fx:value="button" />
+               </styleClass>
+            </Button>
+            <Button fx:id="profilsidebar" alignment="BASELINE_LEFT" layoutX="-19.0" layoutY="293.0" mnemonicParsing="false" onAction="#ProfilSidebar" prefHeight="46.0" prefWidth="188.0" text="Profil" textFill="WHITE">
+               <padding>
+                  <Insets left="35.0" />
+               </padding>
+               <stylesheets>
+                  <URL value="@../style/style/style.css" />
+                  <URL value="@../style/style/style.css" />
+               </stylesheets>
+               <styleClass>
+                  <String fx:value="shadow" />
+                  <String fx:value="transparent" />
+               </styleClass>
+               <graphic>
+                  <ImageView fitHeight="23.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../style/marketicon.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="servicesidebar" alignment="BASELINE_LEFT" layoutX="-19.0" layoutY="339.0" mnemonicParsing="false" onAction="#ServiceSidebar" prefHeight="46.0" prefWidth="188.0" stylesheets="@../style/style/style.css" text="Services" textFill="WHITE">
+               <graphic>
+                  <FontAwesomeIconView fill="WHITE" text="" />
+               </graphic>
+               <padding>
+                  <Insets left="35.0" />
+               </padding>
+               <styleClass>
+                  <String fx:value="shadow" />
+                  <String fx:value="transparent" />
+                  <String fx:value="button" />
+               </styleClass>
+            </Button>
+            <Button fx:id="actualitesidebar" alignment="BASELINE_LEFT" layoutX="-19.0" layoutY="385.0" mnemonicParsing="false" onAction="#ActualiteSidebar" prefHeight="46.0" prefWidth="188.0" stylesheets="@../style/style/style.css" text="Actualites" textFill="WHITE">
+               <graphic>
+                  <FontAwesomeIconView fill="WHITE" text="" />
+               </graphic>
+               <padding>
+                  <Insets left="35.0" />
+               </padding>
+               <styleClass>
+                  <String fx:value="shadow" />
+                  <String fx:value="transparent" />
+                  <String fx:value="button" />
+               </styleClass>
+            </Button>
+            <Button fx:id="reclamationsidebar" alignment="BASELINE_LEFT" layoutX="-14.0" layoutY="431.0" mnemonicParsing="false" onAction="#ReclamationSidebar" prefHeight="46.0" prefWidth="188.0" stylesheets="@../style/style/style.css" text="Reclamations" textFill="WHITE">
+               <graphic>
+                  <FontAwesomeIconView fill="WHITE" text="" />
+               </graphic>
+               <padding>
+                  <Insets left="35.0" />
+               </padding>
+               <styleClass>
+                  <String fx:value="shadow" />
+                  <String fx:value="transparent" />
+                  <String fx:value="button" />
+               </styleClass>
+            </Button>
+         </children>
+      </Pane>
+    </children>
+</AnchorPane>

@@ -1,0 +1,319 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.SplitMenuButton?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="516.0" prefWidth="733.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.InscriptionController">
+   <children>
+      <AnchorPane fx:id="inscr" layoutX="-27.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="516.0" prefWidth="760.0">
+         <children>
+            <ImageView fitHeight="516.0" fitWidth="798.0" style="-fx-background-color: 0; -fx-border-width: 0 0 2 0; -fx-border-color: white; -fx-prompt-text-fill: black;">
+               <image>
+                  <Image url="@../Images/a.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="130.0" fitWidth="79.0" layoutX="32.0" layoutY="377.0">
+               <image>
+                  <Image url="@../Images/Image3-removebg-preview.png" />
+               </image>
+            </ImageView>
+            <ImageView layoutX="41.0" layoutY="14.0">
+               <image>
+                  <Image url="@../Images/icons8-back-24%20(1).png" />
+               </image>
+            </ImageView>
+            <Button fx:id="back" layoutX="45.0" layoutY="13.0" mnemonicParsing="false" onAction="#back" opacity="0.0" />
+            <VBox fx:id="validation" alignment="CENTER" layoutX="123.0" layoutY="38.0" prefHeight="383.0" prefWidth="553.0" visible="false">
+               <children>
+                  <Label prefHeight="53.0" prefWidth="509.0" text="Nous avons envoyé un code de validation:">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                  </Label>
+                  <Label prefHeight="18.0" prefWidth="385.0" text="Pour confirmer votre inscription ,entrez le code que  nous avons envoyé " textFill="#110e0e" />
+                  <Label prefHeight="18.0" prefWidth="163.0" text="sur votre Adresse Mail :  " textFill="#110e0e" />
+                  <Label prefHeight="53.0" prefWidth="379.0" text="Entrez le code à 4 Chiffres :">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="labnumero" />
+                  <TextField fx:id="Code" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="32.0" prefWidth="200.0" promptText="Entrez le code :" />
+                  <Button fx:id="terminer" mnemonicParsing="false" onAction="#terminer" prefHeight="25.0" prefWidth="86.0" style="-fx-background-color: 0;" text="Terminer">
+                     <VBox.margin>
+                        <Insets top="25.0" />
+                     </VBox.margin>
+                  </Button>
+               </children>
+            </VBox>
+            <VBox fx:id="pageinscription" layoutX="161.0" layoutY="26.0" prefHeight="464.0" prefWidth="511.0">
+               <children>
+                  <HBox alignment="CENTER" prefHeight="13.0" prefWidth="511.0">
+                     <children>
+                        <Label fx:id="invalid" prefHeight="17.0" prefWidth="515.0" textFill="RED" />
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="38.0" prefWidth="511.0">
+                     <children>
+                        <ImageView>
+                           <image>
+                              <Image url="@../Images/id-card.png" />
+                           </image>
+                        </ImageView>
+                        <TextField fx:id="Nom" prefHeight="25.0" prefWidth="208.0" promptText="Nom" style="-fx-background-color: 0; -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px; -fx-prompt-text-fill: black;">
+                           <HBox.margin>
+                              <Insets right="50.0" />
+                           </HBox.margin>
+                        </TextField>
+                        <ImageView>
+                           <image>
+                              <Image url="@../Images/id-card.png" />
+                           </image>
+                        </ImageView>
+                        <TextField fx:id="Prenom" prefHeight="25.0" prefWidth="208.0" promptText="Prénom" style="-fx-background-color: 0; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: white; -fx-prompt-text-fill: black;" />
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="53.0" prefWidth="511.0">
+                     <children>
+                        <ImageView>
+                           <image>
+                              <Image url="@../Images/email.png" />
+                           </image>
+                        </ImageView>
+                        <TextField fx:id="Email" prefHeight="25.0" prefWidth="208.0" promptText="Email" style="-fx-background-color: 0; -fx-border-width: 0 0 2 0; -fx-border-color: white; -fx-prompt-text-fill: black;">
+                           <HBox.margin>
+                              <Insets right="50.0" />
+                           </HBox.margin>
+                        </TextField>
+                        <ImageView>
+                           <image>
+                              <Image url="@../Images/calendar.png" />
+                           </image>
+                        </ImageView>
+                        <DatePicker fx:id="date" prefHeight="25.0" prefWidth="208.0" promptText="date de naissance" style="-fx-prompt-text-fill: black;" />
+                     </children>
+                     <padding>
+                        <Insets top="20.0" />
+                     </padding>
+                  </HBox>
+                  <HBox prefHeight="31.0" prefWidth="511.0">
+                     <children>
+                        <ImageView>
+                           <image>
+                              <Image url="@../Images/home-address.png" />
+                           </image>
+                        </ImageView>
+                        <TextField fx:id="Adresse" prefHeight="25.0" prefWidth="208.0" promptText="Adresse" style="-fx-background-color: 0; -fx-border-width: 0 0 2 0; -fx-border-color: white; -fx-prompt-text-fill: black;">
+                           <HBox.margin>
+                              <Insets right="50.0" />
+                           </HBox.margin>
+                        </TextField>
+                        <ImageView>
+                           <image>
+                              <Image url="@../Images/address.png" />
+                           </image>
+                        </ImageView>
+                        <SplitMenuButton fx:id="Region" mnemonicParsing="false" prefHeight="8.0" prefWidth="206.0" style="-fx-prompt-text-fill: black;" text="Gouvernement">
+                           <items>
+                              <MenuItem fx:id="Ariana" mnemonicParsing="false" onAction="#Ariana" onMenuValidation="#Ariana" text="Ariana" />
+                              <MenuItem fx:id="Beja" mnemonicParsing="false" onAction="#Beja" onMenuValidation="#Beja" text="Beja" />
+                              <MenuItem fx:id="Benarous" mnemonicParsing="false" onAction="#Benarous" onMenuValidation="#Benarous" text="Ben Arous" />
+                              <MenuItem fx:id="Bizerte" mnemonicParsing="false" onAction="#Bizerte" onMenuValidation="#Bizerte" text="Bizerte" />
+                              <MenuItem fx:id="Gabés" mnemonicParsing="false" onAction="#Gabés" onMenuValidation="#Gabés" text="Gabés" />
+                              <MenuItem fx:id="Gafsa" mnemonicParsing="false" onAction="#Gafsa" onMenuValidation="#Gafsa" text="Gafsa" />
+                              <MenuItem fx:id="Jendouba" mnemonicParsing="false" onAction="#Jendouba" onMenuValidation="#Jendouba" text="Jendouba" />
+                              <MenuItem fx:id="Kairaouan" mnemonicParsing="false" onAction="#Kairaouan" onMenuValidation="#Kairaouan" text="Kairaouan" />
+                              <MenuItem fx:id="kasserine" mnemonicParsing="false" onAction="#kasserine" onMenuValidation="#kasserine" text="kasserine" />
+                              <MenuItem fx:id="Kébili" mnemonicParsing="false" onAction="#Kébili" onMenuValidation="#Kébili" text="Kébili" />
+                              <MenuItem fx:id="Kef" mnemonicParsing="false" onAction="#Kef" onMenuValidation="#Kef" text="Sousse" />
+                              <MenuItem fx:id="Gabés16" mnemonicParsing="false" onAction="#Gabés" onMenuValidation="#Gabés" text="Mahdia" />
+                              <MenuItem fx:id="Manouba" mnemonicParsing="false" onAction="#Manouba" onMenuValidation="#Manouba" text="Manouba" />
+                              <MenuItem fx:id="Médenine" mnemonicParsing="false" onAction="#Médenine" onMenuValidation="#Médenine" text="Médenine" />
+                              <MenuItem fx:id="Monastir" mnemonicParsing="false" onAction="#Monastir" onMenuValidation="#Monastir" text="Monastir" />
+                              <MenuItem fx:id="Nabeul" mnemonicParsing="false" onAction="#Nabeul" onMenuValidation="#Nabeul" text="Nabeul" />
+                              <MenuItem fx:id="Sfax" mnemonicParsing="false" onAction="#Sfax" onMenuValidation="#Sfax" text="Sfax" />
+                              <MenuItem fx:id="SidiBouzid" mnemonicParsing="false" onAction="#SidiBouzid" onMenuValidation="#SidiBouzid" text="Sidi Bouzid" />
+                              <MenuItem fx:id="Siliana" mnemonicParsing="false" onAction="#Siliana" onMenuValidation="#Siliana" text="Siliana" />
+                              <MenuItem fx:id="Sousse" mnemonicParsing="false" onAction="#Sousse" onMenuValidation="#Sousse" text="Sousse" />
+                              <MenuItem fx:id="Tataouine" mnemonicParsing="false" onAction="#Tataouine" onMenuValidation="#Tataouine" text="Tataouine" />
+                              <MenuItem fx:id="Tozeur" mnemonicParsing="false" onAction="#Tozeur" onMenuValidation="#Tozeur" text="Tozeur" />
+                              <MenuItem fx:id="Tunis" mnemonicParsing="false" onAction="#Tunis" onMenuValidation="#Tunis" text="Tunis" />
+                              <MenuItem fx:id="Zaghouan" mnemonicParsing="false" onAction="#Zaghouan" onMenuValidation="#Zaghouan" text="Zaghouan" />
+                           </items>
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                        </SplitMenuButton>
+                     </children>
+                     <VBox.margin>
+                        <Insets top="20.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <HBox prefHeight="32.0" prefWidth="511.0">
+                     <VBox.margin>
+                        <Insets top="20.0" />
+                     </VBox.margin>
+                     <children>
+                        <ImageView>
+                           <image>
+                              <Image url="@../Images/hat.png" />
+                           </image>
+                        </ImageView>
+                        <SplitMenuButton fx:id="Role" mnemonicParsing="false" onAction="#Role" prefHeight="25.0" prefWidth="208.0" style="-fx-prompt-text-fill: black;" text="Role">
+                           <items>
+                              <MenuItem fx:id="admin" mnemonicParsing="false" onAction="#admin" onMenuValidation="#admin" text="admin" />
+                              <MenuItem fx:id="client" mnemonicParsing="false" onAction="#client" onMenuValidation="#client" text="client" />
+                              <MenuItem fx:id="coach" mnemonicParsing="false" onAction="#coach" onMenuValidation="#coach" text="coach" />
+                              <MenuItem fx:id="vendeur" mnemonicParsing="false" onAction="#vendeur" onMenuValidation="#vendeur" text="vendeur" />
+                           </items>
+                           <HBox.margin>
+                              <Insets right="50.0" />
+                           </HBox.margin>
+                        </SplitMenuButton>
+                        <ImageView>
+                           <image>
+                              <Image url="@../Images/sex.png" />
+                           </image>
+                        </ImageView>
+                        <SplitMenuButton fx:id="Sexe" mnemonicParsing="false" onAction="#Sexe" prefHeight="25.0" prefWidth="208.0" style="-fx-prompt-text-fill: black;" text="Sexe">
+                           <items>
+                              <MenuItem fx:id="femme" mnemonicParsing="false" onAction="#femme" onMenuValidation="#femme" text="femme" />
+                              <MenuItem fx:id="homme" mnemonicParsing="false" onAction="#homme" onMenuValidation="#homme" text="homme" />
+                           </items>
+                        </SplitMenuButton>
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="39.0" prefWidth="511.0">
+                     <VBox.margin>
+                        <Insets top="20.0" />
+                     </VBox.margin>
+                     <children>
+                        <ImageView fitHeight="22.0" fitWidth="22.0">
+                           <image>
+                              <Image url="@../Images/key%20(1).png" />
+                           </image>
+                        </ImageView>
+                        <PasswordField fx:id="mdp" prefHeight="27.0" prefWidth="275.0" promptText="Mot de passe" style="-fx-background-color: 0; -fx-border-width: 0 0 2 0; -fx-border-color: white; -fx-prompt-text-fill: black;">
+                           <HBox.margin>
+                              <Insets right="60.0" />
+                           </HBox.margin>
+                        </PasswordField>
+                        <ImageView>
+                           <image>
+                              <Image url="@../Images/key.png" />
+                           </image>
+                        </ImageView>
+                        <PasswordField fx:id="Cmdp" prefHeight="27.0" prefWidth="300.0" promptText="Confirmer mot de passe" style="-fx-background-color: 0; -fx-border-width: 0 0 2 0; -fx-border-color: white; -fx-prompt-text-fill: black;">
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                        </PasswordField>
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="29.0" prefWidth="511.0">
+                     <VBox.margin>
+                        <Insets top="20.0" />
+                     </VBox.margin>
+                     <children>
+                        <ImageView>
+                           <image>
+                              <Image url="@../Images/captcha.png" />
+                           </image>
+                        </ImageView>
+                        <Label fx:id="generatedString" alignment="CENTER" contentDisplay="CENTER" prefHeight="25.0" prefWidth="208.0" style="-fx-border-width: 0 0 2 0; -fx-border-color: white;" textAlignment="CENTER" textFill="#252121">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets right="50.0" />
+                           </HBox.margin>
+                        </Label>
+                        <ImageView>
+                           <image>
+                              <Image url="@../Images/fountain-pen-close-up.png" />
+                           </image>
+                        </ImageView>
+                        <TextField fx:id="text" prefHeight="25.0" prefWidth="215.0" promptText="Récrire ici " style="-fx-background-color: 0; -fx-border-width: 0 0 2 0; -fx-border-color: white; -fx-prompt-text-fill: black;" />
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="32.0" prefWidth="511.0">
+                     <VBox.margin>
+                        <Insets top="20.0" />
+                     </VBox.margin>
+                     <children>
+                        <ImageView fitHeight="23.0" fitWidth="23.0">
+                           <image>
+                              <Image url="@../Images/question.png" />
+                           </image>
+                           <HBox.margin>
+                              <Insets bottom="2.0" />
+                           </HBox.margin>
+                        </ImageView>
+                        <SplitMenuButton fx:id="question" mnemonicParsing="false" onAction="#Sexe" prefHeight="25.0" prefWidth="208.0" style="-fx-prompt-text-fill: black;" text="Question de sécurité ? ">
+                           <items>
+                              <MenuItem fx:id="q1" mnemonicParsing="false" onAction="#q1" onMenuValidation="#q1" text="Nom de votre grande mére ? " />
+                              <MenuItem fx:id="q2" mnemonicParsing="false" onAction="#q2" onMenuValidation="#q2" text="Votre Langue matérnelle ? " />
+                              <MenuItem fx:id="q3" mnemonicParsing="false" onAction="#q3" onMenuValidation="#q3" text="Nombre de votre famille ?" />
+                              <MenuItem fx:id="q4" mnemonicParsing="false" onAction="#q4" onMenuValidation="#q4" text="Combien de soeur avez vous ?" />
+                              <MenuItem fx:id="q5" mnemonicParsing="false" onAction="#q5" onMenuValidation="#q5" text="Votre serie préférée ? " />
+                           </items>
+                           <HBox.margin>
+                              <Insets right="50.0" />
+                           </HBox.margin>
+                        </SplitMenuButton>
+                        <ImageView>
+                           <image>
+                              <Image url="@../Images/conversation.png" />
+                           </image>
+                        </ImageView>
+                        <TextField fx:id="Reponse" prefHeight="25.0" prefWidth="215.0" promptText="Reponse" style="-fx-background-color: 0; -fx-border-width: 0 0 2 0; -fx-border-color: white; -fx-prompt-text-fill: black;" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="30.0" prefWidth="511.0">
+                     <children>
+                        <ImageView>
+                           <image>
+                              <Image url="@../Images/icons8-téléphone-24.png" />
+                           </image>
+                        </ImageView>
+                        <TextField fx:id="num" alignment="TOP_LEFT" prefHeight="25.0" prefWidth="208.0" promptText="Numéro de télèphone" style="-fx-background-color: 0; -fx-border-width: 0 0 2 0; -fx-border-color: white; -fx-prompt-text-fill: black;">
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                        </TextField>
+                     </children>
+                     <VBox.margin>
+                        <Insets top="20.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="46.0" prefWidth="511.0">
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                     <children>
+                        <ImageView fitHeight="20.0" fitWidth="23.0">
+                           <image>
+                              <Image url="@../Images/icons8-ajouter-un-utilisateur-homme-50.png" />
+                           </image>
+                        </ImageView>
+                        <Button fx:id="inscription" alignment="CENTER" mnemonicParsing="false" onAction="#inscription" prefHeight="25.0" prefWidth="69.0" style="-fx-background-color: 0; -fx-prompt-text-fill: BLACK;" text="S'inscrire" />
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

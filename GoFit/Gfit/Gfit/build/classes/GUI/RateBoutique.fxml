@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.scene.Group?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="443.0" prefWidth="686.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.RateBoutiqueController">
+   <children>
+      <Label fx:id="noter" layoutX="75.0" layoutY="32.0" prefHeight="30.0" prefWidth="513.0" textAlignment="CENTER">
+         <font>
+            <Font name="Bell MT Bold" size="24.0" />
+         </font>
+         <textFill>
+            <LinearGradient endX="1.0" endY="1.0">
+               <stops>
+                  <Stop>
+                     <color>
+                        <Color />
+                     </color>
+                  </Stop>
+                  <Stop offset="0.5154639175257733">
+                     <color>
+                        <Color red="0.6100000143051147" green="0.5998333096504211" />
+                     </color>
+                  </Stop>
+                  <Stop offset="0.5292096219931272">
+                     <color>
+                        <Color red="0.6100000143051147" green="0.5998333096504211" />
+                     </color>
+                  </Stop>
+                  <Stop offset="0.5360824742268041">
+                     <color>
+                        <Color red="0.6100000143051147" green="0.5998333096504211" />
+                     </color>
+                  </Stop>
+                  <Stop offset="0.973259074929889">
+                     <color>
+                        <Color red="0.6100000143051147" green="0.5998333096504211" />
+                     </color>
+                  </Stop>
+                  <Stop offset="1.0">
+                     <color>
+                        <Color red="1.0" green="1.0" blue="1.0" />
+                     </color>
+                  </Stop>
+               </stops>
+            </LinearGradient>
+         </textFill>
+      </Label>
+      <Label layoutX="138.0" layoutY="114.0" stylesheets="@../style/style/style.css" text="Qualité">
+         <font>
+            <Font name="Bell MT Bold" size="18.0" />
+         </font>
+         <styleClass>
+            <String fx:value="valider" />
+            <String fx:value="search-box" />
+            <String fx:value="transparent" />
+         </styleClass></Label>
+      <Label layoutX="138.0" layoutY="185.0" stylesheets="@../style/style/style.css" text="Livraison">
+         <font>
+            <Font name="Bell MT Bold" size="18.0" />
+         </font>
+         <styleClass>
+            <String fx:value="valider" />
+            <String fx:value="search-box" />
+            <String fx:value="transparent" />
+         </styleClass></Label>
+      <Label layoutX="138.0" layoutY="249.0" stylesheets="@../style/style/style.css" text="Service">
+         <font>
+            <Font name="Bell MT Bold" size="18.0" />
+         </font>
+         <styleClass>
+            <String fx:value="valider" />
+            <String fx:value="transparent" />
+            <String fx:value="search-box" />
+         </styleClass></Label>
+      <Group layoutX="138.0" layoutY="104.0" />
+      <Button fx:id="submitnote" layoutX="585.0" layoutY="318.0" mnemonicParsing="false" onAction="#SubmitNote" stylesheets="@../style/style/style.css" text="Noter">
+         <font>
+            <Font size="18.0" />
+         </font>
+         <styleClass>
+            <String fx:value="transparent" />
+            <String fx:value="shadow" />
+            <String fx:value="search-box" />
+            <String fx:value="button" />
+         </styleClass></Button>
+      <RadioButton fx:id="q1" layoutX="230.0" layoutY="113.0" mnemonicParsing="false" stylesheets="@../style/style/style.css" text=".">
+         <toggleGroup>
+            <ToggleGroup fx:id="buttonqualite" />
+         </toggleGroup>
+      </RadioButton>
+      <RadioButton fx:id="q2" layoutX="324.0" layoutY="113.0" mnemonicParsing="false" stylesheets="@../style/style/style.css" text="." toggleGroup="$buttonqualite" />
+      <RadioButton fx:id="q3" layoutX="423.0" layoutY="113.0" mnemonicParsing="false" stylesheets="@../style/style/style.css" text="." toggleGroup="$buttonqualite" />
+      <RadioButton fx:id="l1" layoutX="230.0" layoutY="184.0" mnemonicParsing="false" stylesheets="@../style/style/style.css" text=".">
+         <toggleGroup>
+            <ToggleGroup fx:id="buttonlivraison" />
+         </toggleGroup>
+      </RadioButton>
+      <RadioButton fx:id="l2" layoutX="324.0" layoutY="184.0" mnemonicParsing="false" stylesheets="@../style/style/style.css" text="." toggleGroup="$buttonlivraison" />
+      <RadioButton fx:id="l3" layoutX="423.0" layoutY="184.0" mnemonicParsing="false" stylesheets="@../style/style/style.css" text="." toggleGroup="$buttonlivraison" />
+      <RadioButton fx:id="s1" layoutX="229.0" layoutY="248.0" mnemonicParsing="false" stylesheets="@../style/style/style.css" text=".">
+         <toggleGroup>
+            <ToggleGroup fx:id="buttonservice" />
+         </toggleGroup>
+      </RadioButton>
+      <RadioButton fx:id="s2" layoutX="324.0" layoutY="248.0" mnemonicParsing="false" stylesheets="@../style/style/style.css" text="." toggleGroup="$buttonservice" />
+      <RadioButton fx:id="s3" layoutX="423.0" layoutY="248.0" mnemonicParsing="false" stylesheets="@../style/style/style.css" text="." toggleGroup="$buttonservice" />
+      <Label layoutX="201.0" layoutY="307.0" prefHeight="22.0" prefWidth="164.0" text="Votre Score Attribué">
+         <font>
+            <Font name="Bell MT" size="18.0" />
+         </font>
+      </Label>
+      <TextField fx:id="noteutilisateur" layoutX="370.0" layoutY="306.0" prefHeight="25.0" prefWidth="38.0" promptText="note attribué par vous" styleClass="shadow" stylesheets="@../style/style/style.css" />
+      <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="263.0" layoutY="116.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../style/star.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="361.0" layoutY="116.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../style/star.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="381.0" layoutY="116.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../style/star.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="457.0" layoutY="116.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../style/star.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="477.0" layoutY="116.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../style/star.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="497.0" layoutY="116.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../style/star.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="263.0" layoutY="187.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../style/star.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="361.0" layoutY="187.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../style/star.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="457.0" layoutY="187.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../style/star.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="477.0" layoutY="187.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../style/star.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="497.0" layoutY="187.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../style/star.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="381.0" layoutY="187.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../style/star.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="263.0" layoutY="251.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../style/star.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="361.0" layoutY="251.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../style/star.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="381.0" layoutY="251.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../style/star.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="457.0" layoutY="251.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../style/star.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="477.0" layoutY="251.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../style/star.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="497.0" layoutY="251.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../style/star.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="retour" layoutX="620.0" layoutY="26.0" mnemonicParsing="false" onAction="#retour" stylesheets="@../style/style/style.css" text="retour">
+         <font>
+            <Font size="10.0" />
+         </font>
+         <styleClass>
+            <String fx:value="transparent" />
+            <String fx:value="shadow" />
+            <String fx:value="search-box" />
+            <String fx:value="button" />
+         </styleClass>
+      </Button>
+      <ImageView fitHeight="18.0" fitWidth="26.0" layoutX="599.0" layoutY="28.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../style/png-clipart-computer-icons-arrow-icon-design-back-angle-triangle-thumbnail.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="nameLabel" layoutX="45.0" layoutY="349.0" text="Label" />
+      <TextField fx:id="noteutilisateur1" layoutX="372.0" layoutY="345.0" onAction="#scoreglobal" prefHeight="25.0" prefWidth="38.0" promptText="note attribué par vous" styleClass="shadow" stylesheets="@../style/style/style.css" />
+      <Label fx:id="scoreglabel" layoutX="201.0" layoutY="347.0" prefHeight="22.0" prefWidth="164.0" text="Le score global  est">
+         <font>
+            <Font name="Bell MT" size="18.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

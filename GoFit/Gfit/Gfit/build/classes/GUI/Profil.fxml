@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.ProfilController">
+   <children>
+      <AnchorPane fx:id="fenetreprofil" layoutX="1.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="516.0" prefWidth="779.0">
+         <children>
+            <ImageView fitHeight="518.0" fitWidth="219.0" layoutX="-3.0">
+               <image>
+                  <Image url="@../Images/NOIR.png" />
+               </image>
+            </ImageView>
+            <Button layoutX="22.0" layoutY="184.0" mnemonicParsing="false" onAction="#profil" prefHeight="30.0" prefWidth="161.0" style="-fx-background-color: 0;" text="Actualité" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
+            <Button fx:id="parametre" layoutX="26.0" layoutY="382.0" mnemonicParsing="false" onAction="#parametre" opacity="0.91" prefHeight="30.0" prefWidth="161.0" style="-fx-background-color: 0;" text="Paramétres" textFill="#fff9f9">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
+            <Button fx:id="deco" layoutX="24.0" layoutY="464.0" mnemonicParsing="false" onAction="#deco" opacity="0.88" prefHeight="30.0" prefWidth="161.0" style="-fx-background-color: 0;" text="Déconnection" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
+            <Button fx:id="Reclamationprofil" layoutX="25.0" layoutY="217.0" mnemonicParsing="false" onAction="#reclamationProfil" opacity="0.91" prefHeight="30.0" prefWidth="161.0" style="-fx-background-color: 0;" text="Reclamation" textFill="#fff9f9">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
+            <Label fx:id="email1" layoutX="26.0" layoutY="29.0" prefHeight="30.0" prefWidth="167.0" textFill="TRANSPARENT" />
+            <ImageView fitHeight="30.0" fitWidth="37.0" layoutX="2.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Images/golden-profile-avatar-icon-symbol-social-network-user-d-illustration-92300656-removebg-preview%20(1).png" />
+               </image>
+            </ImageView>
+            <Label fx:id="labelprenom" layoutX="38.0" layoutY="8.0" prefHeight="30.0" prefWidth="208.0" textFill="#f2ff04" />
+            <ImageView fx:id="profil" fitHeight="212.0" fitWidth="116.0" layoutX="45.0" layoutY="-10.0" onDragDetected="#profil" style="-fx-background-color: 0;">
+               <image>
+                  <Image url="@../Images/Image3-removebg-preview.png" />
+               </image>
+            </ImageView>
+            <Line endX="67.0" fill="WHITE" layoutX="100.0" layoutY="148.0" startX="-100.0" stroke="#fffafa" />
+            <Button fx:id="Boutiques" layoutX="21.0" layoutY="251.0" mnemonicParsing="false" onAction="#Boutiques" opacity="0.91" prefHeight="30.0" prefWidth="161.0" style="-fx-background-color: 0;" text="Boutique" textFill="#fff9f9">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
+            <Button fx:id="Service" layoutX="20.0" layoutY="282.0" mnemonicParsing="false" onAction="#Service" opacity="0.91" prefHeight="35.0" prefWidth="161.0" style="-fx-background-color: 0;" text="Service" textFill="#fff9f9">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
+            <Button fx:id="Panier" layoutX="52.0" layoutY="318.0" mnemonicParsing="false" onAction="#Panier" prefHeight="30.0" prefWidth="96.0" style="-fx-background-color: 0.0;" text="Panier" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></Button>
+            <Label fx:id="codeid" layoutX="45.0" layoutY="440.0" prefHeight="18.0" prefWidth="138.0" style="-fx-background-color: black;" textAlignment="JUSTIFY" textFill="YELLOW" />
+            <Button fx:id="Reservation" layoutX="61.0" layoutY="350.0" mnemonicParsing="false" onAction="#Reservation" prefHeight="30.0" prefWidth="96.0" style="-fx-background-color: 0.0;" text="Reservation" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
+            <ImageView layoutX="38.0" layoutY="353.0">
+               <image>
+                  <Image url="@../Images/reservation.png" />
+               </image>
+            </ImageView>
+            <ImageView layoutX="36.0" layoutY="465.0">
+               <image>
+                  <Image url="@../Images/se-deconnecter.png" />
+               </image>
+            </ImageView>
+            <ImageView layoutX="37.0" layoutY="319.0">
+               <image>
+                  <Image url="@../Images/chariot-de-chariot.png" />
+               </image>
+            </ImageView>
+            <ImageView layoutX="36.0" layoutY="386.0">
+               <image>
+                  <Image url="@../Images/parametres.png" />
+               </image>
+            </ImageView>
+            <ImageView layoutX="36.0" layoutY="287.0">
+               <image>
+                  <Image url="@../Images/services-medicaux.png" />
+               </image>
+            </ImageView>
+            <ImageView layoutX="36.0" layoutY="255.0">
+               <image>
+                  <Image url="@../Images/boutique.png" />
+               </image>
+            </ImageView>
+            <ImageView layoutX="34.0" layoutY="221.0">
+               <image>
+                  <Image url="@../Images/alerte.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="35.0" layoutY="186.0">
+               <image>
+                  <Image url="@../Images/journal.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
